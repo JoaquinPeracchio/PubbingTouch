@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>Halecka - Notificaciones</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<!-- Meta, title, CSS, favicons, etc. -->
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="description" content="Halecka">
+
+	<%- include ('../partials/styles') %>
+	</head>
+
+<body data-mode="register" data-page="notification" data-title="Notificaciones" data-description=" - Registro" class="sidebar-mini fixed sidebar-mini-expand-feature skin-black sidebar-collapse">
+	<div class="wrapper">
+	<%- include ('../partials/topbar') %>
+	<%- include ('../partials/sidebar') %>
+		<!-- Content Wrapper. Contains page content -->
+		<div class="content-wrapper">
+			<!-- Main content -->
+			<section class="content">
+				<!-- Info boxes -->
+				<div class="row">
+					<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+						<div class="box box-success">
+							<div class="box-body">
+								<form id="notificationForm" action="#">
+									<h3 data-icon="fa fa-exclamation-circle">Notificacion</h3>
+									<fieldset>							 
+										<div class="row">
+											<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+												<label class="form-control-label" for="titlename">Titulo</label>
+												<div class="input-group">
+													<input id="titlename" name="titlename" type="text" class="required form-control">
+													<span class="input-group-addon">
+														<i class="fa fa-check"></i>
+													</span>
+												</div>
+											</div>
+											<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+												<label class="form-control-label" for="parent">Empresa</label>
+												<div class="input-group">
+													<select id="parent" name="parent" class="form-control">
+													</select>
+												</div>
+											</div>
+											<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+												<label class="form-control-label" for="category">Categoría</label>
+												<div class="input-group">
+													<select id="category" name="category" class="form-control">
+														<option value="notificacion" selected>Notificación</option>
+														<option value="cumplimiento">Cumplimiento</option>
+													</select>
+												</div>
+											</div>
+											<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+												<label class="form-control-label" for="files">Archivo</label>
+												<div class="input-group">
+													<input type="file" id="files" data-name="files" name="files" class="form-control">
+												</div>
+											</div>
+											<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+												<label class="form-control-label" for="percent">Porcentaje</label>
+												<div class="input-group">
+													<input id="percent" name="percent" type="text" class="required form-control">
+													<span class="input-group-addon">
+														<i class="fa fa-percent"></i>
+													</span>
+												</div>
+											</div>
+											<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+												<label class="form-control-label" for="status">Estado</label>
+												<div class="input-group">
+													<select id="status" name="status" class="form-control">
+														<option value="presentado" selected>Presentado</option>
+														<option value="aprobado">Aprobado</option>
+														<option value="rechazado">Rechazado</option>
+													</select>
+												</div>
+											</div>
+ 											<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+												<label class="form-control-label" for="expiration">Vencimiento</label>
+												<div class="input-group date expiration" id="expiration">
+													<span class="input-group-addon">
+														<i class="fa fa-calendar"></i>
+													</span>
+													<input type="date" name="expiration" class="form-control pull-right">
+												</div>
+											</div>
+											<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+												<label class="form-control-label" for="comment">Comentario</label>
+												<div class="input-group">
+													<textarea id="comment" name="comment" class="form-control"></textarea>
+												</div>
+											</div>
+											<div class="tab-pane col-xs-12 col-sm-12 col-md-12 col-lg-12" style="padding-top: 15px;">
+												<div class="row cards newFiles">
+												</div>
+												<div class="row cards uploadedFiles">
+												</div>
+											</div>
+										</div>
+									</fieldset>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- /.row -->
+			</section>
+			<!-- /.content -->
+		<%- include ('../partials/chat') %>
+		</div>
+
+	<%- include ('../partials/footer') %>
+	<div class="control-sidebar-bg"></div>
+	</div>
+	<!-- ./wrapper -->
+	<%- include ('../partials/compose') %>
+	<%- include ('../partials/scripts1') %>
+	<script type="text/javascript">
+	var documents = {};
+	documents['filetypes'] = [
+		'Fotos',
+		'Varios'
+	];
+
+	var form = $("#notificationForm").show();
+
+	form.steps({
+		headerTag: "h3",
+		// iconTag: "icon",
+		bodyTag: "fieldset",
+		transitionEffect: "slideLeft",
+		onInit: function (){
+			company.getRelated(function(data){
+				$.each(data.collection, function (i, item) {
+					$('#parent').append('<option value="' + item._id +'"">' + item.titlename + '</option>');
+					main.getNotification(item);
+				});
+			});
+			main.fileOptions(true, documents);
+			main.overlay.hide();
+		},
+		onStepChanging: function (event, currentIndex, newIndex) {
+			// Allways allow previous action even if the current form is not valid!
+			if (currentIndex > newIndex) {
+				return true;
+			}
+			// Forbid next action on "Warning" step if the user is to young
+			if (newIndex === 3 && Number($("#age-2").val()) < 18) {
+				return false;
+			}
+			// Needed in some cases if the user went back (clean up)
+			if (currentIndex < newIndex) {
+				// To remove error styles
+				form.find(".body:eq(" + newIndex + ") label.error").remove();
+				form.find(".body:eq(" + newIndex + ") .error").removeClass("error");
+			}
+			form.validate().settings.ignore = ":disabled,:hidden";
+			return form.valid();
+		},
+		onStepChanged: function (event, currentIndex, priorIndex) {
+			// Used to skip the "Warning" step if the user is old enough.
+			if (currentIndex === 2 && Number($("#age-2").val()) >= 18) {
+				form.steps("next");
+			}
+			// Used to skip the "Warning" step if the user is old enough and wants to the previous step.
+			if (currentIndex === 2 && priorIndex === 3) {
+				form.steps("previous");
+			}
+		},
+		onFinishing: function (event, currentIndex) {
+			form.validate().settings.ignore = ":disabled";
+			return form.valid();
+		},
+		onFinished: function (e, currentIndex) {
+			console.log("Submitted!");
+			e.preventDefault();
+
+			main.uploadFile($('#files'), 'files');
+
+			var serializedArr = $('form').serializeArray();
+			var parent = $('#parent').val();
+			var category = $('#category').val();
+
+			$.ajax({
+				url: "/notification/register",
+				type:"POST",
+				headers: { 
+					"Authorization": main.access_token
+				},
+				dataType:"json",
+				data: serializedArr,
+				success:function(data){
+					// socketio.sendNodeNotification(
+					// 	parent,
+					// 	form.find('#status').val(),
+					// 	form.find('#comment').val(),
+					// 	'/images/userImage.png',
+					// 	category
+					// );
+					// console.log('success');
+					// console.log(data);
+					// window.location.href = '/notification';
+					//whatever you wanna do after the form is successfully submitted
+					window.location.href = '/company';
+				},
+				fail:function(data) {
+					console.log('fail');
+				}
+			});
+		}
+	}).validate({
+		errorElement: 'span',
+		// errorClass: 'has-error',
+		// errorPlacement: function errorPlacement(error, element) { element.after(error); },
+		errorPlacement: function errorPlacement(error, element) {
+			element.parent().parent().addClass('has-error');
+			element.parent().parent().find('label').append(error);
+		},
+		// messages: {
+		// 	'join[email]': "Please enter a valid email address.",
+		// 	'firstName': "Please enter a valid first name.",
+		// 	'lastName': "Please enter a valid last name."
+		// }
+		rules: {
+			percent: {
+				required: true,
+				range: [0, 100]
+			}
+			// confirm: {
+			//     equalTo: "#password-2"
+			// }
+		}
+	});
+	</script>
+
+	</body>
+</html>

@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>Halecka - Usuarios</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<!-- Meta, title, CSS, favicons, etc. -->
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="description" content="Halecka">
+
+	<%- include ('partials/styles') %>
+	<style type="text/css">
+		.iti { display: flex; }
+		.iti__country-list { border: none; z-index: 20; }
+		.iti__selected-flag { z-index: 10; }
+
+	input[name='gender'] {
+		-webkit-appearance: none;
+		-moz-appearance: none;
+		-o-appearance: none;
+		-ms-appearance: none;
+		appearance: none;
+		outline: none !important;
+		cursor: pointer;
+		margin: 0 20px;
+	}
+	input[name='gender']:after {
+		font-family: 'FontAwesome';
+		display: inline-block;
+		text-align: center;
+		font-size: 30px;
+		content: attr(data-icon);
+		padding: 10px;
+		border-radius: 15px;
+		color: rgba(0,0,0,.4);
+		transition: box-shadow 1s, color 1s;
+	}
+	input[name='gender']:checked:after {
+		box-shadow: 2px 2px 14px rgba(0,0,0,.4);
+		color: rgb(16 139 31);
+	}
+	</style>
+	</head>
+
+<body data-mode="register" data-page="users" data-title="Usuarios" data-description=" - Registro" class="sidebar-mini fixed sidebar-mini-expand-feature skin-black sidebar-collapse">
+	<div class="wrapper">
+		<!-- Content Wrapper. Contains page content -->
+		<div class="content-wrapper">
+			<!-- Main content -->
+			<section class="content">
+				<!-- Info boxes -->
+				<div class="row">
+					<div class="col-md-12">
+						<div class="box box-success">
+							<div class="box-body">
+								<form id="userForm" action="#">
+	<h3 data-icon="fa fa-users">Usuario</h3>
+	<fieldset>							 
+		<input id="device" value="Web" name="device" type="hidden">
+
+		<div class="row">
+			<div class="uploadAvatar user-panel align-center">
+				<div class="changeAvatar">
+					<img src="/images/missing-image.jpg" class="img-circle" style=" width: 15vw !important; height: 15vw !important;" alt="Imagen Category">
+					<div class="text-center">
+						<i class="fa fa-camera"></i>
+						<p>Agregar</p>
+					</div>
+				</div>
+			</div>
+			<div class="hidden">
+				<label class="form-control-label" for="avatar">Logo</label>
+				<div class="input-group">
+					<input class="avatar" type="file" id="avatar" data-name="avatar" name="avatar" class="form-control">
+				</div>
+			</div>
+			<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+				<label class="form-control-label" for="username">Usuario</label>
+				<div class="input-group" id="username">
+					<span class="input-group-addon">
+						<i class="fa fa-user"></i>
+					</span>
+					<input type="text" name="username" class="form-control pull-right required">
+				</div>
+			</div>
+			<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+				<label class="form-control-label" for="email">E-Mail</label>
+				<div class="input-group" id="email">
+					<span class="input-group-addon">
+						<i class="fa fa-at"></i>
+					</span>
+					<input type="email" name="email" class="form-control pull-right required">
+				</div>
+			</div>
+			<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+				<label class="form-control-label" for="firstname">Nombre</label>
+				<div class="input-group" id="firstname">
+<!-- 
+					<span class="input-group-addon">
+						<i class="fa fa-id-card"></i>
+					</span>
+ -->
+					<input type="text" name="firstname" class="form-control pull-right required">
+				</div>
+			</div>
+			<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+				<label class="form-control-label" for="lastname">Apellido</label>
+				<div class="input-group" id="lastname">
+<!-- 
+					<span class="input-group-addon">
+						<i class="fa fa-id-card"></i>
+					</span>
+ -->
+					<input type="text" name="lastname" class="form-control pull-right required">
+				</div>
+			</div>
+			<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+				<label class="form-control-label" for="gender">Masculino</label>
+				<div class="input-group text-center" id="gender">
+<!-- 
+					<span class="input-group-addon">
+						<i class="fa fa-id-card"></i>
+					</span>
+ -->
+					<input type="radio" class="required" name="gender" value="m" data-icon='' />
+				</div>
+			</div>
+			<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+				<label class="form-control-label" for="gender">Femenino</label>
+				<div class="input-group text-center" id="gender">
+<!-- 
+					<span class="input-group-addon">
+						<i class="fa fa-id-card"></i>
+					</span>
+ -->
+					<input type="radio" class="required" name="gender" value="f" data-icon='' />
+				</div>
+			</div>
+			<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+				<label class="form-control-label" for="password">Contraseña</label>
+				<div class="input-group password">
+					<input type="password" id="password" name="password" class="form-control pull-right required">
+				</div>
+			</div>
+			<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+				<label class="form-control-label" for="password-match">Confirmar</label>
+				<div class="input-group password-match">
+					<input type="password" id="password-match" name="password-match" class="form-control pull-right required">
+				</div>
+			</div>
+		</div>
+	</fieldset>
+	<h3 data-icon="fa fa-globe">Ubicación</h3>
+	<fieldset>
+		<div class="row">
+			<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+				<label class="form-control-label" for="slug">Pais</label>
+				<div class="input-group slug" id="slug">
+					<select id="country" name="country" type="tel" class="form-control addon-left crs-country" data-region-id="region" data-default-value="Argentina" data-default-option="Seleccione Pais">
+					</select>
+				</div>
+			</div>
+			<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+				<label class="form-control-label" for="slug">Provincia</label>
+				<div class="input-group slug" id="slug">
+					<select id="region" name="region" type="tel" class="form-control addon-left" data-default-option="Seleccione Provincia">
+					</select>
+				</div>
+			</div>
+			<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+				<label class="form-control-label" for="city">Ciudad</label>
+				<div class="input-group" id="city">
+					<input type="text" name="city" class="form-control pull-right required">
+				</div>
+			</div>
+			<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+				<label class="form-control-label" for="postal">Codigo Postal</label>
+				<div class="input-group" id="postal">
+					<input type="text" name="postal" class="form-control pull-right required">
+				</div>
+			</div>
+			<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+				<label class="form-control-label" for="address">Direccion</label>
+				<div class="input-group" id="address">
+					<input type="text" name="address" class="form-control pull-right required">
+				</div>
+			</div>
+			<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+				<label class="form-control-label" for="department">Piso /Dpto.</label>
+				<div class="input-group" id="department">
+					<input type="text" name="department" class="form-control pull-right required">
+				</div>
+			</div>
+			<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+				<label class="form-control-label" for="slug">Telefono</label>
+				<span id="valid-msg" class="hide">✓ Valido</span>
+				<span id="error-msg" class="hide"></span>
+				<div class="input-group slug" id="slug">
+					<span class="input-group-addon">
+						<i class="fa fa-phone"></i>
+					</span>
+					<input id="phone" name="phone" type="tel" class="form-control addon-left">
+				</div>
+			</div>
+			<div class="tab-pane col-xs-12" style="padding-top: 15px;">
+				<div class="row cards newFiles">
+				</div>
+				<div class="row cards uploadedFiles">
+				</div>
+			</div>
+		</div>
+	</fieldset>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- /.row -->
+			</section>
+			<!-- /.content -->
+		</div>
+		<%- include ('partials/footer') %>
+		<%- include ('partials/chat') %>
+		<div class="chat-sidebar-bg"></div>
+		<div class="control-sidebar-bg"></div>
+
+	</div>
+	<!-- ./wrapper -->
+	<%- include ('partials/modal') %>
+	<%- include ('partials/compose') %>
+	<%- include ('partials/user-reg') %>
+	<!-- <script type="text/javascript" src="/js/ejs.js"></script> -->
+	<script type="text/javascript">
+
+	var form = $("#userForm");
+	var companies = window.localStorage.getItem('companies');
+	var dialCode;
+
+
+	form.steps({
+		headerTag: "h3",
+		// iconTag: "icon",
+		bodyTag: "fieldset",
+		transitionEffect: "slideLeft",
+		onInit: function (event, currentIndex, newIndex) {
+
+var input = document.querySelector("#phone"),
+  errorMsg = document.querySelector("#error-msg"),
+  validMsg = document.querySelector("#valid-msg");
+
+// here, the index maps to the error code returned from getValidationError - see readme
+var errorMap = ["Invalid number", "Invalid country code", "Too short", "Too long", "Invalid number"];
+
+// initialise plugin
+var iti = window.intlTelInput(
+	input, {
+		utilsScript: "/vendors/intl-tel-input/build/js/utils.js",
+		initialCountry: 'ar'
+});
+
+dialCode = iti.getSelectedCountryData().dialCode;
+
+var reset = function() {
+  input.classList.remove("error");
+  errorMsg.innerHTML = "";
+  errorMsg.classList.add("hide");
+  validMsg.classList.add("hide");
+};
+
+// on blur: validate
+input.addEventListener('blur', function() {
+  reset();
+  if (input.value.trim()) {
+    if (iti.isValidNumber()) {
+      validMsg.classList.remove("hide");
+    } else {
+      input.classList.add("error");
+      var errorCode = iti.getValidationError();
+      errorMsg.innerHTML = errorMap[errorCode];
+      errorMsg.classList.remove("hide");
+    }
+  }
+});
+
+// on keyup / change flag: reset
+input.addEventListener('change', reset);
+input.addEventListener('keyup', reset);
+
+			main.fileOptions();
+			main.overlay.fadeOut();
+		},
+		onStepChanging: function (event, currentIndex, newIndex) {
+			// Allways allow previous action even if the current form is not valid!
+			if (currentIndex > newIndex) {
+				return true;
+			}
+			// Forbid next action on "Warning" step if the user is to young
+			if (newIndex === 3 && Number($("#age-2").val()) < 18) {
+				return false;
+			}
+			// Needed in some cases if the user went back (clean up)
+			if (currentIndex < newIndex) {
+				// To remove error styles
+				form.find(".body:eq(" + newIndex + ") label.error").remove();
+				form.find(".body:eq(" + newIndex + ") .error").removeClass("error");
+			}
+			form.validate().settings.ignore = ":disabled,:hidden";
+			return form.valid();
+		},
+		onStepChanged: function (event, currentIndex, priorIndex) {
+			// Used to skip the "Warning" step if the user is old enough.
+			if (currentIndex === 2 && Number($("#age-2").val()) >= 18) {
+				form.steps("next");
+			}
+			// Used to skip the "Warning" step if the user is old enough and wants to the previous step.
+			if (currentIndex === 2 && priorIndex === 3) {
+				form.steps("previous");
+			}
+		},
+		onFinishing: function (event, currentIndex) {
+			form.validate().settings.ignore = ":disabled";
+			return form.valid();
+		},
+		onFinished: function (e, currentIndex) {
+			console.log("Submitted!");
+			e.preventDefault();
+
+			main.uploadFile($('#avatar'), 'avatar');
+
+			var serializedArr = $('form').serializeArray();
+			serializedArr.push({ name: 'dialCode', value: dialCode});
+			var collection = 'users';
+			var mode = 'register';
+
+			$.ajax({
+				url: '/' + collection + '/' + mode,
+				type:"POST",
+				dataType:"json",
+				async: false,
+				data: serializedArr,
+				success:function(data){
+					result = data;
+				},
+				fail:function(data) {
+					result = data;
+				}
+			});
+			main.overlay.fadeOut();
+			window.location.href = '/company';
+
+		}
+	}).validate({
+		errorElement: 'span',
+		// errorClass: 'has-error',
+		// errorPlacement: function errorPlacement(error, element) { element.after(error); },
+		errorPlacement: function errorPlacement(error, element) {
+			element.parent().parent().addClass('has-error');
+			element.parent().parent().find('label').append(error);
+		},
+		// messages: {
+		// 	'join[email]': "Please enter a valid email address.",
+		// 	'firstName': "Please enter a valid first name.",
+		// 	'lastName': "Please enter a valid last name."
+		// }
+		rules: {
+			password: {
+			    equalTo: "#password-match"
+			}
+			// percent: {
+			// 	required: true,
+			// 	range: [0, 100]
+			// },
+		}
+	});
+	</script>
+
+	</body>
+</html>

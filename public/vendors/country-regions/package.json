@@ -1,0 +1,31 @@
+{
+  "name": "country-region-selector",
+  "version": "0.5.1",
+  "description": "A simple, configurable JS library that add a country dropdown that automatically updates a corresponding region dropdown in your forms.",
+  "main": "dist/crs.min.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/benkeen/country-region-dropdowns.git"
+  },
+  "keywords": [
+    "countries",
+    "regions",
+    "dropdowns"
+  ],
+  "author": "Ben Keen",
+  "license": "MIT",
+  "readmeFilename": "README.md",
+  "bugs": {
+    "url": "https://github.com/benkeen/country-region-dropdowns/issues"
+  },
+  "devDependencies": {
+    "country-region-data": "1.4.4",
+    "grunt": "1.0.3",
+    "grunt-contrib-uglify": "~3.3.0",
+    "grunt-template": "1.0.0",
+    "underscore": "1.9.1"
+  }
+}

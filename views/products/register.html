@@ -1,0 +1,543 @@
+ <!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>Halecka - Productos</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<!-- Meta, title, CSS, favicons, etc. -->
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="description" content="Halecka">
+
+	<%- include ('../partials/styles') %>
+	</head>
+
+<body data-mode="register" data-page="productos" data-title="Productos" data-description=" - Registro" class="sidebar-mini fixed sidebar-mini-expand-feature skin-black sidebar-collapse">
+	<div class="wrapper">
+	<%- include ('../partials/topbar') %>
+	<%- include ('../partials/sidebar') %>
+		<!-- Content Wrapper. Contains page content -->
+		<div class="content-wrapper">
+			<!-- Main content -->
+			<section class="content">
+				<!-- Info boxes -->
+				<div class="row">
+					<div class="col-md-12">
+						<div class="box box-success">
+							<div class="box-body">
+								<form id="productosForm" action="#">
+	<h3 data-icon="fa fa-shopping-basket">Productos</h3>
+	<fieldset>							 
+		<input id="device" value="Web" name="device" type="hidden">
+		<input id="country" name="country" type="hidden">
+		<input id="product_id" name="product_id" type="hidden">
+
+		<div class="row">
+			<div class="uploadAvatar user-panel align-center">
+				<div class="changeAvatar">
+					<img src="/images/missing-image.jpg" class="img-circle" style=" width: 15vw !important; height: 15vw !important;" alt="Imagen Category">
+					<div class="text-center">
+						<i class="fa fa-camera"></i>
+						<p>Agregar</p>
+					</div>
+				</div>
+			</div>
+			<div class="hidden">
+				<label class="form-control-label" for="avatar">Logo</label>
+				<div class="input-group">
+					<input class="avatar" type="file" id="avatar" data-name="avatar" name="avatar" class="form-control">
+				</div>
+			</div>
+			<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+				<label class="form-control-label" for="titlename">Nombre</label>
+				<div class="input-group titlename" id="titlename">
+					<input type="text" name="titlename" class="form-control pull-right required">
+				</div>
+			</div>
+			<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 box-footer">
+				<ul id="searchCont" class="menu">
+				</ul>
+			</div>
+			<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+				<label class="form-control-label" for="stock">Agregar Producto/s</label>
+				<div class="input-group autocomplete">
+					<input type="text" id="stock" name="stock" class="form-control">
+					<select id="searchSort" class="form-control">
+						<option value="name" selected>Nombre</option>
+						<option value="category">Categoria</option>
+					</select>
+				</div>
+				<aside class="stocklist-sidebar stocklist-sidebar-dark stocklist-sidebar-open" style="">
+ 				 	<ul>
+ 				 	</ul>
+				</aside>
+				<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+				</div>
+			</div>
+			<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+				<label class="form-control-label" for="category">Categoria</label>
+				<div class="input-group">
+					<select id="category" name="category" class="form-control">
+					</select>
+				</div>
+			</div>
+			<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+				<label class="form-control-label" for="product_type">Tipo</label>
+				<div class="input-group product_type" id="product_type">
+					<span class="input-group-addon">
+						<i class="fa fa-tags"></i>
+					</span>
+					<div class="input-group">
+						<select id="type" name="type" class="form-control">
+							<option value="all">Todos</option>
+							<option value="products">Productos</option>
+							<option value="services">Servicios</option>
+							<option value="promos">Promociones</option>
+							<option value="business">Negocio</option>
+						</select>
+					</div>
+					<!-- <input type="text" name="product_type" class="form-control pull-right required"> -->
+				</div>
+			</div>
+			<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+				<label class="form-control-label" for="endDate">Hasta</label>
+				<div class="input-group date endDate">
+					<span class="input-group-addon">
+						<i class="fa fa-calendar"></i>
+					</span>
+					<input type="month" id="endDate" name="end_date" class="form-control pull-right">
+				</div>
+			</div>
+		</div>
+	</fieldset>
+	<h3 data-icon="fa fa-clock-o">Categoria</h3>
+	<fieldset>							 
+		<input id="device" value="Web" name="device" type="hidden">
+		<input id="dialCode" name="dialCode" type="hidden">
+		<input id="country" name="country" type="hidden">
+
+		<div class="row">
+			<div class="uploadAvatar user-panel align-center">
+				<div class="changeAvatar">
+					<img src="/images/missing-image.jpg" class="img-circle" style=" width: 15vw !important; height: 15vw !important;" alt="Imagen Category">
+					<div class="text-center">
+						<i class="fa fa-camera"></i>
+						<p>Agregar</p>
+					</div>
+				</div>
+			</div>
+			<div class="hidden">
+				<label class="form-control-label" for="avatar">Logo</label>
+				<div class="input-group">
+					<input class="avatar" type="file" id="avatar" data-name="avatar" name="avatar" class="form-control">
+				</div>
+			</div>
+			<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+				<label class="form-control-label" for="slug">Slug</label>
+				<div class="input-group slug" id="slug">
+					<input type="text" name="slug" class="form-control pull-right required">
+				</div>
+			</div>
+			<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+				<label class="form-control-label" for="parent">Categoria Padre</label>
+				<div class="input-group">
+					<select id="parent" name="parent" class="form-control">
+					</select>
+				</div>
+			</div>
+			<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+				<label class="form-control-label" for="type">Tipo</label>
+				<div class="input-group">
+					<select id="type" name="type" class="form-control">
+						<option value="all">Todos</option>
+						<option value="products">Productos</option>
+						<option value="services">Servicios</option>
+						<option value="promos">Promociones</option>
+						<option value="business">Negocio</option>
+					</select>
+				</div>
+			</div>
+			<div class="tab-pane col-xs-12 col-sm-12 col-md-12 col-lg-12" style="padding-top: 15px;">
+				<div class="row cards newFiles">
+				</div>
+				<div class="row cards uploadedFiles">
+				</div>
+				<div class="row cards uploadedAvatar hidden">
+				</div>
+			</div>
+		</div>
+	</fieldset>
+	<h3 data-icon="fa fa-clock-o">Categoria</h3>
+	<fieldset>							 
+		<div class="row">
+			<div class="col-xs-9 col-sm-9 col-md-9 col-lg-9">
+				<label class="form-control-label" for="new_tarifa_type">Nuevo tipo de Tarifa</label>
+				<div class="input-group">
+					<input type="text" id="new_tarifa_type" name="new_tarifa_type" class="form-control">
+				</div>
+			</div>
+			<div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+				<label class="form-control-label">&nbsp;</label>
+				<div class="input-group">
+					<span role="menuitem" class="btn addTarifaType form-control">
+						<i class="fa fa-plus"></i>
+						Tipo de Tarifa
+					</span>
+				</div>
+			</div>
+			<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+				<label class="form-control-label" for="titlename">Seleccionar Tarifa</label>
+				<div class="input-group">
+					<select id="titlename" name="titlename" class="form-control required">
+						<option selected="selected" disabled="disabled">Seleccionar...</option>
+					</select>
+				</div>
+			</div>
+			<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+				<label class="form-control-label" for="startDate">Desde</label>
+				<div class="input-group date startDate">
+					<span class="input-group-addon">
+						<i class="fa fa-calendar"></i>
+					</span>
+					<input type="month" id="startDate" name="start_date" class="form-control pull-right">
+				</div>
+			</div>
+			<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+				<label class="form-control-label" for="endDate">Hasta</label>
+				<div class="input-group date endDate">
+					<span class="input-group-addon">
+						<i class="fa fa-calendar"></i>
+					</span>
+					<input type="month" id="endDate" name="end_date" class="form-control pull-right">
+				</div>
+			</div>
+		</div>
+	</fieldset>
+	<h3 data-icon="fa fa-clock-o">Valores</h3>
+	<fieldset>							 
+		<div class="row">
+			<div class="tab-pane col-xs-12 col-sm-12 col-md-12 col-lg-12" style="padding-top: 15px;">
+				<div class="row sortable productos">
+				</div>
+			</div>
+			<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+				<label class="form-control-label" for="files">Archivos</label>
+				<div class="input-group">
+					<input type="file" multiple id="files" data-name="files" name="files" class="form-control">
+				</div>
+			</div>
+			<div class="tab-pane col-xs-12 col-sm-12 col-md-12 col-lg-12" style="padding-top: 15px;">
+				<div class="row cards newFiles">
+				</div>
+				<div class="row cards uploadedFiles">
+				</div>
+			</div>
+			<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+				<label class="form-control-label" for="comment">Comentario</label>
+				<div class="input-group">
+					<textarea id="comment" name="comment" class="form-control"></textarea>
+				</div>
+			</div>
+		</div>
+	</fieldset>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- /.row -->
+			</section>
+			<!-- /.content -->
+		</div>
+		<%- include ('../partials/footer') %>
+		<%- include ('../partials/chat') %>
+		<div class="chat-sidebar-bg"></div>
+		<div class="control-sidebar-bg"></div>
+
+	</div>
+	<!-- ./wrapper -->
+	<%- include ('../partials/modal') %>
+	<%- include ('../partials/compose') %>
+	<%- include ('../partials/scripts1') %>
+	<script type="text/javascript" src="/js/functions/products.js"></script>
+	<script type="text/javascript">
+	var parent_company;
+	var selectedLinea = $('#parent').data('selected');
+	var documents = {};
+	documents['filetypes'] = [
+		'autorizacion',
+		'renovacion'
+	];
+
+
+	var form = $("#productosForm").show();
+
+	form.steps({
+		headerTag: "h3",
+		// iconTag: "icon",
+		bodyTag: "fieldset",
+		transitionEffect: "slideLeft",
+		onInit: function (event, currentIndex, newIndex) {
+			$.ajax({
+				url: category.getAll(function(data){
+					$.each(data.collection, function (i, item) {
+						$('#category').append($('<option />', { 'class': 'id_' + item._id, 'data-id': item._id, 'value': item.titlename, text: item.titlename }))
+					});
+				}),
+				// success:function(){
+				// 	$.each(category.collection, function (i, item) {
+				// 		$('#titlename').append($('<option />', { 'class': 'id_' + item._id, 'data-id': item._id, 'value': item.titlename, text: item.titlename }))
+				// 	});
+				// }
+			});
+			var productos = [];
+
+			$('#stock').on('keypress',function(e) {
+    if(e.which == 13) {
+        $('.stock').trigger('click');
+    }
+    $(document).on('focusin', '#stock', function(){
+		$(document).stocklistSidebar('open');
+});
+
+$(document).on('focusout', '#stock', function(){
+	$(document).stocklistSidebar('close');
+});
+
+});
+$(document).on("click", '#stock', function(e){
+	$('.stocklist-sidebar ul').empty();
+	main.getSearch('products', $('#stock').val(), function(result){
+		console.log(result);
+		$.each(result, function (i, item) {
+			if (typeof $('.stocklist-sidebar ul .item-match[data-id="' + item._id + '"]').data('id') === 'undefined') {
+				productos.push(item);
+				$.each(item.variant, function (i, itemProduct) {
+					$('.stocklist-sidebar ul').append($('<li />', { 'class': 'predictive', 'data-id': item._id, 'data-sku': itemProduct.sku })
+						.append($('<div />', { 'class': 'comp', text: item.category }))
+						.append($('<div />', { 'class': 'user' })
+							.append($('<div />', { 'class': 'result' })
+								.append($('<img />', { 'class': 'pull-left img-circle thumb', 'src': itemProduct.image }))
+								.append($('<div />', { 'class': 'title', text: item.titlename + ' - ' + itemProduct.item_content }))
+									.append($('<div />', { 'class': 'description' })
+										.append($('<span />', { text: 'Marca: ' + item.brand + ' - ' }))
+									)
+							)
+						)
+					);
+				});
+			}
+		});
+	});
+
+	$(document).stocklistSidebar('open');
+});
+/*$(document).on('click','#stocklistSidebar .predictive',function(e){
+	var selectedProdId = $(this).data('id');
+	var selectedProdSku = $(this).data('sku');
+	var currProduct = JSON.parse(window.localStorage.getItem('productsID-' + selectedProdId));
+	var skuIndex = main.getIndexParam(currProduct.variant, 'sku', selectedProdSku);
+	if ($('.shop-sidebar .box-body .stock-items ul li.productGroups[data-id="' + selectedProdId + '"]').length == 0) {
+	$('.shop-sidebar .box-body .stock-items ul.productGroups').append($('<li />', { 'class': 'productGroups item-product new relative', 'data-id': currProduct._id })
+		.append($('<ul />', { 'class': 'no-padding' }))
+	)
+	}
+	if ($('.shop-sidebar .box-body .stock-items ul li.productGroups[data-id="' + selectedProdId + '"] ul li[data-sku="' + selectedProdSku + '"]').length == 0) {
+	ingredients.addStock($('.shop-sidebar .box-body .stock-items ul.productGroups li.productGroups[data-id="' + selectedProdId + '"] ul'), currProduct, skuIndex);
+	};
+});
+*/
+
+			$.ajax({
+				url: '/js/JSON/ingredients.json',
+				success:function(data){
+					console.log(data);
+					var ingredientes = data.ingredientes;
+					// $.each(ingredientes, function(i, item) {
+					// 	var category = i;
+					// 	console.log(i);
+					// 	console.log(item);
+					// });
+					$(document).on('click', '.ingredients a.btn-delete', function () {
+						var selected = main.findArr(data, $(this).data('id'));
+						usersList.push(selected);
+						$(this).closest('.userid').remove();
+
+					})
+					if ($('.ingredients .userid').length !== 0) {
+						$.each($('.ingredients .userid'), function() {
+							ingredientes.splice(main.getIndex(usersList, $(this).data('id')), 1);
+						});
+					}
+					main.autocomplete(
+						$('#titlename input'),
+						ingredientes,
+						$('#searchCont'),
+						$('#searchSort'),
+						function(element, item) {
+							element.append($('<li />', { 'class': 'predictive', 'data-id': item._id })
+								.append($('<div />', { 'class': 'comp', text: item.category }))
+								.append($('<div />', { 'class': 'user' })
+									.append($('<div />', { 'class': 'result' })
+										.append($('<img />', { 'class': 'pull-left img-circle thumb', 'src': item.image }))
+										.append($('<div />', { 'class': 'title', text: item.name }))
+										.append($('<div />', { 'class': 'description' })
+											.append($('<span />', { text: 'Calorias: ' + item.nutricional[0].calorias + ' - ' }))
+											.append($('<span />', { text: 'HC: ' + item.nutricional[0].carbohidratos + ' - ' }))
+											.append($('<span />', { text: 'Proteinas: ' + item.nutricional[0].proteinas + ' - ' }))
+											.append($('<span />', { text: 'Grasas: ' + item.nutricional[0].lipidos }))
+										)
+									)
+								)
+							);
+						}, function (content, item, filterCont) {
+							var selected = ingredientes.find(selEl => selEl._id === item.data('id'));
+							$('.ingredient_name').val(selected.name);
+							$('.ingredient_img').val(selected.image);
+							$('.new-item .btn.logo.small').css({ 'background-image': 'url(' + selected.image + ')'});
+							main.fillNutritional($('.properties'), selected);
+							console.log(item.data('id'));
+							content.empty();
+						}
+					);
+					$(document).on('mouseenter', '#searchCont .predictive', function() {
+						console.log(this);
+					});
+				}
+			});
+
+
+
+			company.getRelated(function(data){
+				$.each(data.collection, function (iComp, itemComp) {
+					$('#parent').append($('<option />', { 'class': 'id_' + itemComp._id, 'value': itemComp._id, text: itemComp.titlename }))
+					main.getNotification(itemComp);
+				});
+			});
+			main.fileOptions(true, documents);
+
+			$('#titlename').on('change', function() {
+				$('#product_id').val($('option:selected', this).data('id'));
+			});
+			$('.addTarifaType').on('click', function() {
+				if (typeof $('#new_tarifa_type').val() !== 'undefined' && $('#new_tarifa_type').val() !== '') {
+					products.registerTarifa($('#new_tarifa_type').val(), function(item) {
+						$('#titlename').append($('<option />', { 'class': 'id_' + item._id, 'data-id': item._id, 'value': item.titlename, text: item.titlename }));
+					});
+				}
+			});
+			main.overlay.hide();
+		},
+		onStepChanging: function (event, currentIndex, newIndex) {
+			// Allways allow previous action even if the current form is not valid!
+			if (currentIndex > newIndex) {
+				return true;
+			}
+			// Forbid next action on "Warning" step if the user is to young
+			if (newIndex === 3 && Number($("#age-2").val()) < 18) {
+				return false;
+			}
+			// Needed in some cases if the user went back (clean up)
+			if (currentIndex < newIndex) {
+				// To remove error styles
+				form.find(".body:eq(" + newIndex + ") label.error").remove();
+				form.find(".body:eq(" + newIndex + ") .error").removeClass("error");
+			}
+			form.validate().settings.ignore = ":disabled,:hidden";
+			return form.valid();
+		},
+		onStepChanged: function (event, currentIndex, priorIndex) {
+			// Used to skip the "Warning" step if the user is old enough.
+			if (currentIndex === 1) {
+				products.getMonths($('#startDate').val(), $('#endDate').val());
+				products.appendTarifa('Direccion', 'Seccion');
+			}
+		},
+		onFinishing: function (event, currentIndex) {
+			form.validate().settings.ignore = ":disabled";
+			return form.valid();
+		},
+		onFinished: function (e, currentIndex) {
+			console.log("Submitted!");
+			e.preventDefault();
+
+			main.uploadFile($('#avatar'), 'avatar');
+			main.uploadFile($('#files'), 'files');
+
+			var serializedArr = $('form').serializeArray();
+			var parent_company = $('#parent').val();
+			var category = $('#category').val();
+			var collection = 'productos';
+			var mode = 'register';
+
+			var tarifaObj = [];
+			var concept;
+			var tarifaType;
+			$.each($('.item tbody tr'), function(){
+					$.each($('td input', this), function(){
+					if ($(this).hasClass('concepto')) {
+						concept = $(this).val();
+						} else {
+							tarifaObj[$(this).data('date')] = tarifaObj[$(this).data('date')] || {};
+							tarifaObj[$(this).data('date')][$(this).data('tarifa')] = tarifaObj[$(this).data('date')][$(this).data('tarifa')] || [];
+							tarifaObj[$(this).data('date')][$(this).data('tarifa')].push({concept: concept, price: $(this).val()});
+						}
+					});
+			});
+			$.each(Object.keys(tarifaObj), function(i, date) {
+				$.each(Object.keys(tarifaObj[date]), function(i, item) {
+					console.log(tarifaObj[date][item]);
+					tarifa_type = item;
+					$.each(Object.keys(tarifaObj[date][item]), function(i, el){
+						var stringTarifa = JSON.stringify(tarifaObj[date][item][el]);
+						serializedArr.push({ name: 'concept', value: tarifaObj[date][item][el].concept});
+						serializedArr.push({ name: 'price', value: tarifaObj[date][item][el].price});
+					});
+				});
+			});
+			serializedArr.push({ name: 'tarifa_type', value: tarifa_type});
+
+
+			main.submit(collection, mode, serializedArr, function (data) {
+				console.log(data)
+				// socketio.sendNodeNotification(
+				// 	parent_company,
+				// 	'Linea Creada',
+				// 	data.result.comment || '',
+				// 	'/uploads/' + data.result.avatar || '',
+				// 	data.result.parent,
+				// 	collection || '',
+				// 	data.result._id || ''
+				// );
+				main.overlay.fadeOut();
+				window.location.href = '/company';
+			});
+
+		}
+	}).validate({
+		errorElement: 'span',
+		// errorClass: 'has-error',
+		// errorPlacement: function errorPlacement(error, element) { element.after(error); },
+		errorPlacement: function errorPlacement(error, element) {
+			element.parent().parent().addClass('has-error');
+			element.parent().parent().find('label').append(error);
+		},
+		// messages: {
+		// 	'join[email]': "Please enter a valid email address.",
+		// 	'firstName': "Please enter a valid first name.",
+		// 	'lastName': "Please enter a valid last name."
+		// }
+		rules: {
+			percent: {
+				required: true,
+				range: [0, 100]
+			}
+			// confirm: {
+			//     equalTo: "#password-2"
+			// }
+		}
+	});
+	</script>
+
+	</body>
+</html>

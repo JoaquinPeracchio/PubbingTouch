@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>Halecka - Empresa</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<!-- Meta, title, CSS, favicons, etc. -->
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="description" content="Halecka">
+
+	<%- include ('../partials/styles') %>
+	</head>
+
+<body data-mode="edit" data-page="company" data-title="Empresa" data-description=" - Edicion" class="sidebar-mini fixed sidebar-mini-expand-feature skin-black sidebar-collapse">
+	<div class="wrapper">
+	<%- include ('../partials/topbar') %>
+	<%- include ('../partials/sidebar') %>
+		<!-- Content Wrapper. Contains page content -->
+		<div class="content-wrapper">
+			<!-- Main content -->
+			<section class="content">
+				<!-- Info boxes -->
+				<div class="row">
+					<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+						<div class="box box-success">
+							<div class="box-body">
+								<form id="companyForm" action="#">
+	<h3 data-icon="fa fa-clock-o">Empresa</h3>
+	<fieldset>							 
+		<input id="device" value="Web" name="device" type="hidden">
+		<input id="dialCode" name="dialCode" type="hidden">
+		<input id="country" name="country" type="hidden">
+
+		<div class="row">
+		<%
+		var   avatarLength = collection.avatar.length,
+		      indexAvatar = parseInt(collection.avatar.length) - 1,
+		      indexAvatarSub,
+		      fileAvatar = collection.avatar[indexAvatar];
+
+		if (fileAvatar instanceof Array && typeof fileAvatar.file === 'undefined') {
+			indexAvatarSub = parseInt(fileAvatar.length) -1;
+			fileAvatar = fileAvatar[indexAvatarSub];
+		}
+		%>
+			<div class="uploadAvatar user-panel align-center">
+				<div class="changeAvatar">
+		<% if (typeof fileAvatar !== 'undefined') { %>
+					<img src="/uploads/<%= fileAvatar.file %>" class="img-circle" style=" width: 15vw !important; height: 15vw !important;" alt="Imagen Empresa">
+		<% } else { %>
+					<img src="/images/missing-image.jpg" class="img-circle" style=" width: 15vw !important; height: 15vw !important;" alt="Imagen Empresa">
+		<% } %>
+					<div class="text-center">
+						<i class="fa fa-camera"></i>
+						<p>Actualizar</p>
+					</div>
+				</div>
+			</div>
+			<div class="hidden">
+				<label class="form-control-label" for="avatar">Logo</label>
+				<div class="input-group">
+					<input class="avatar" type="file" id="avatar" data-name="avatar" name="avatar" class="form-control">
+				</div>
+			</div>
+			<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+				<label class="form-control-label" for="titlename">Empresa</label>
+				<div class="input-group titlename" id="titlename">
+					<input type="text" name="titlename" value="<%= collection.titlename %>" class="form-control pull-right required">
+				</div>
+			</div>
+			<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+				<label class="form-control-label" for="cuit">CUIT</label>
+				<div class="input-group cuit" id="cuit">
+					<input type="text" name="cuit" value="<%= collection.cuit %>" class="form-control pull-right required">
+				</div>
+			</div>
+			<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+				<label class="form-control-label" for="direccion">Direcci&oacute;n</label>
+				<div class="input-group direccion" id="direccion">
+					<input type="text" name="direccion" value="<%= collection.direccion %>" class="form-control pull-right required">
+				</div>
+			</div>
+			<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+				<label class="form-control-label" for="telefono">N&uacute;mero de Tel&eacute;fono</label>
+				<div class="input-group telefono" id="telefono">
+					<input type="text" name="telefono" value="<%= collection.telefono %>" class="form-control pull-right required">
+				</div>
+			</div>
+			<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+				<label class="form-control-label" for="files">Documentos</label>
+				<div class="input-group">
+					<span class="input-group-addon">
+						<i class="fa fa-file"></i>
+					</span>
+					<input type="file" multiple id="files" data-name="files" name="files" class="form-control">
+				</div>
+			</div>
+			<div class="tab-pane col-xs-12 col-sm-12 col-md-12 col-lg-12" style="padding-top: 15px;">
+				<div class="row cards newFiles">
+				</div>
+				<div class="row cards uploadedFiles">
+				<%
+				if (typeof collection.files !== 'undefined') {
+
+					for(var i=0; i < collection.files.length; i++) {
+						collection.files[i].name = collection.files[i].name || collection.files[i].file;
+						if (collection.files[i] instanceof Array && typeof collection.files[i] !== 'undefined') {
+							for(var index=0; index < collection.files[i].length; index++) {
+								collection.files[i][index].name = collection.files[i][index].name || collection.files[i][index].file;
+								%>
+					<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 userid" data-id="<%= collection.files[i][index]._id %>">
+						<div class="card-pf box border-color">
+							<div class="box-header text-center">
+								<p class="capitalize text-center"><%= collection.files[i][index].filetypes %></p>
+								<div class="box-tools pull-right">
+									<a class="btn btn-box-tool btn-delete" data-collection="users" data-id="<%= collection.files[i][index]._id %>">
+									<i class="fa fa-remove"></i>
+									</a>
+								</div>
+							</div>
+							<div class="box-body btn btn-app no-margin fc-grid text-center capitalize">
+								<i class="fa fa-file"></i>
+								<%= collection.files[i][index].file %></div>
+							<div class="box-footer text-center">
+								<p class="no-margin capitalize"><%= collection.files[i][index].expiration %></p>
+							</div>
+						</div>
+					</div>
+							<%
+							}
+						} else {
+							%>
+					<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 userid" data-id="<%= collection.files[i]._id %>">
+						<div class="card-pf box border-color">
+							<div class="box-header text-center">
+								<p class="capitalize text-center"><%= collection.files[i].filetypes %></p>
+								<div class="box-tools pull-right">
+									<a class="btn btn-box-tool btn-delete" data-collection="users" data-id="<%= collection.files[i]._id %>">
+									<i class="fa fa-remove"></i>
+									</a>
+								</div>
+							</div>
+							<div class="box-body btn btn-app no-margin fc-grid text-center capitalize">
+								<i class="fa fa-file"></i>
+								<%= collection.files[i].file %></div>
+							<div class="box-footer text-center">
+								<p class="no-margin capitalize"><%= collection.files[i].expiration %></p>
+							</div>
+						</div>
+					</div>
+					<%
+						}
+					}
+				}
+				%>
+				</div>
+				<div class="row cards uploadedAvatar hidden">
+				</div>
+			</div>
+			<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+				<label class="form-control-label" for="staff_users">Asignar Usuarios</label>
+				<div class="input-group autocomplete">
+					<input type="text" id="staff_users" name="staff_users" class="form-control">
+					<select id="searchSort" class="form-control">
+						<option value="firstname" selected>Nombre</option>
+						<option value="lastname">Apellido</option>
+						<option value="transportCompany">Empresa</option>
+					</select>
+				</div>
+				<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+					<ul id="searchCont" class="menu">
+					</ul>
+				</div>
+			</div>
+			<div class="tab-pane col-xs-12 col-sm-12 col-md-12 col-lg-12" style="padding-top: 15px;">
+				<div class="row cards staff_users">
+				<%
+				if (typeof collection.staff_users !== 'undefined') {
+
+					for(var i=0; i < collection.staff_users.length; i++) {
+						collection.staff_users[i].name = collection.staff_users[i].name || collection.staff_users[i].file;
+						if (collection.staff_users[i] instanceof Array && typeof collection.staff_users[i] !== 'undefined') {
+							for(var index=0; index < collection.staff_users[i].length; index++) {
+								collection.staff_users[i][index].name = collection.staff_users[i][index].name || collection.staff_users[i][index].file;
+								%>
+					<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 userid" data-id="<%= collection.staff_users[i][index]._id %>">
+						<div class="card-pf box border-color">
+							<div class="box-header text-center">
+								<i class="fa fa-user"></i>
+								<div class="box-tools pull-right">
+									<a class="btn btn-box-tool btn-delete" data-collection="users" data-id="<%= collection.staff_users[i][index]._id %>">
+									<input type="hidden" name="staff_id" value="<%= collection.staff_users[i][index]._id %>">
+									<i class="fa fa-remove"></i>
+									</a>
+								</div>
+							</div>
+							<div class="box-body no-padding btn btn-app no-margin fc-grid text-center capitalize"><%= collection.staff_users[i][index].name %></div>
+							<input type="hidden" name="staff_name" value="<%= collection.staff_users[i][index].name %>">
+							<div class="box-footer text-center no-padding">
+								<p class="no-margin capitalize"><%= collection.staff_users[i][index].actions %></p>
+								<input type="hidden" name="staff_actions" value="<%= collection.staff_users[i][index].actions %>">
+							</div>
+						</div>
+					</div>
+							<%
+							}
+						} else {
+							%>
+					<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 userid" data-id="<%= collection.staff_users[i]._id %>">
+						<div class="card-pf box border-color">
+							<div class="box-header text-center">
+								<i class="fa fa-user"></i>
+								<div class="box-tools pull-right">
+									<a class="btn btn-box-tool btn-delete" data-collection="users" data-id="<%= collection.staff_users[i]._id %>">
+									<input type="hidden" name="staff_id" value="<%= collection.staff_users[i]._id %>">
+									<i class="fa fa-remove"></i>
+									</a>
+								</div>
+							</div>
+							<div class="box-body no-padding btn btn-app no-margin fc-grid text-center capitalize"><%= collection.staff_users[i].name %></div>
+							<input type="hidden" name="staff_name" value="<%= collection.staff_users[i].name %>">
+							<div class="box-footer text-center no-padding">
+								<p class="no-margin capitalize"><%= collection.staff_users[i].actions %></p>
+								<input type="hidden" name="staff_actions" value="<%= collection.staff_users[i].actions %>">
+							</div>
+						</div>
+					</div>
+					<%
+						}
+					}
+				}
+				%>
+			</div>
+		</div>
+	</fieldset>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- /.row -->
+			</section>
+			<!-- /.content -->
+		</div>
+		<%- include ('../partials/footer') %>
+		<%- include ('../partials/chat') %>
+		<div class="chat-sidebar-bg"></div>
+		<div class="control-sidebar-bg"></div>
+
+	</div>
+	<!-- ./wrapper -->
+	<%- include ('../partials/modal') %>
+	<%- include ('../partials/compose') %>
+	<%- include ('../partials/scripts1') %>
+	<!-- <script type="text/javascript" src="/js/ejs.js"></script> -->
+	<script type="text/javascript">
+
+	var form = $("#companyForm").show();
+	var avatarChanged = false;
+
+	var selectedLinea = $('#parent_linea').data('selected');
+	var documents = {};
+	documents['filetypes'] = [
+		'estatuto',
+		'autoridades',
+		'fideicomiso',
+		'gestion',
+		'balance'
+	];
+
+	users.getAll(function(data){
+		var usersList = Array.from(data.collection);
+		$(document).on('click', '.staff_users a.btn-delete', function () {
+			var selected = main.findArr(data.collection, $(this).data('id'));
+			usersList.push(selected);
+			$(this).closest('.userid').remove();
+
+		})
+		if ($('.staff_users .userid').length !== 0) {
+			$.each($('.staff_users .userid'), function() {
+				usersList.splice(main.getIndex(usersList, $(this).data('id')), 1);
+			});
+		}
+		main.autocomplete(
+			$('#staff_users'),
+			usersList,
+			$('#searchCont'),
+			$('#searchSort'),
+			function(element, item) {
+				element.append($('<li />', { 'data-id': item._id })
+					.append($('<div />', { 'class': 'comp', text: item.transportCompany }))
+					.append($('<div />', { 'class': 'user' })
+						.append($('<div />', { 'class': 'result' })
+							.append($('<div />', { 'class': 'title', text: item.firstname + ' ' + item.lastname }))
+							.append($('<div />', { 'class': 'description', text: item.email }))
+						)
+					)
+				);
+			}, function (content, item, filterCont) {
+				var selected = users.collection.find(selEl => selEl._id === item.data('id'));
+				$('.staff_users')
+				.append($('<div />', { 'class': 'col-xs-4 col-sm-4 col-md-4 col-lg-4 userid', 'data-id': selected._id })
+					.append($('<div />', { 'class': 'card-pf box border-color' })
+						.append($('<div />', { 'class': 'box-header text-center' })
+							.append($('<div />', { 'class': 'box-tools pull-right' })
+								.append($('<a />', { 'class': 'btn btn-box-tool btn-delete', 'data-collection': 'users', 'data-id': selected._id })
+									.prepend($('<i />', { 'class': 'fa fa-remove' }))
+								)
+							)
+							.prepend($('<i />', { 'class': 'fa fa-user' }))
+						)
+						.append($('<div />', { 'class': 'box-body no-padding btn btn-app no-margin fc-grid text-center capitalize', text: selected.firstname + ' ' + selected.lastname })
+						)
+						.append($('<div />', { 'class': 'box-footer text-center no-padding' })
+							.append($('<p />', { 'class': 'no-margin capitalize', text: selected.role }))
+						)
+					)
+					.append($('<input />', { 'type': 'hidden', 'name': 'staff_id', 'value': selected._id }))
+					.append($('<input />', { 'type': 'hidden', 'name': 'staff_name', 'value': selected.firstname + ' ' + selected.lastname  }))
+					.append($('<input />', { 'type': 'hidden', 'name': 'staff_actions', 'value': selected.role }))
+				)
+				usersList.splice(main.getIndex(usersList, item.data('id')), 1);
+				console.log(item.data('id'));
+				content.empty();
+				filterCont.val('');
+			}
+		);
+	});
+	company.getRelated(function(data) {
+		$.each(company.collection, function (i, item) {
+			main.getNotification(item);
+		});
+	});
+	$(document).on('click', '.changeAvatar', function() {
+		$('#avatar').trigger('click');
+	});
+	$(document).on('change', '#avatar', function() {
+		main.selectedImage($('#avatar'), $('.uploadAvatar img'));
+		avatarChanged = true;
+	});
+	main.overlay.hide();
+
+	form.steps({
+		headerTag: "h3",
+		// iconTag: "icon",
+		bodyTag: "fieldset",
+		transitionEffect: "slideLeft",
+		onInit: function (event, currentIndex, newIndex) {
+			main.fileOptions(true, documents);
+			$('#avatar').on('change', function() {
+				main.selectedImage(this, $('.uploadAvatar img'));
+			});
+		},
+		onStepChanging: function (event, currentIndex, newIndex) {
+			// Allways allow previous action even if the current form is not valid!
+			if (currentIndex > newIndex) {
+				return true;
+			}
+			// Forbid next action on "Warning" step if the user is to young
+			if (newIndex === 3 && Number($("#age-2").val()) < 18) {
+				return false;
+			}
+			// Needed in some cases if the user went back (clean up)
+			if (currentIndex < newIndex) {
+				// To remove error styles
+				form.find(".body:eq(" + newIndex + ") label.error").remove();
+				form.find(".body:eq(" + newIndex + ") .error").removeClass("error");
+			}
+			form.validate().settings.ignore = ":disabled,:hidden";
+			return form.valid();
+		},
+		onStepChanged: function (event, currentIndex, priorIndex) {
+			// Used to skip the "Warning" step if the user is old enough.
+			if (currentIndex === 2 && Number($("#age-2").val()) >= 18) {
+				form.steps("next");
+			}
+			// Used to skip the "Warning" step if the user is old enough and wants to the previous step.
+			if (currentIndex === 2 && priorIndex === 3) {
+				form.steps("previous");
+			}
+		},
+		onFinishing: function (event, currentIndex) {
+			form.validate().settings.ignore = ":disabled";
+			return form.valid();
+		},
+		onFinished: function (e, currentIndex) {
+			console.log("Submitted!");
+			e.preventDefault();
+
+			(avatarChanged) ? main.uploadAvatar($('#avatar'), 'avatar') : $('#avatar').remove();
+			main.uploadFile($('#files'), 'files');
+
+			var serializedArr = $('form').serializeArray();
+			var collection = 'company';
+			var mode = 'edit';
+
+			main.submit(collection, mode, serializedArr, function (data) {
+				console.log(data)
+				// socketio.sendNodeNotification(
+				// 	'parent_company',
+				// 	form.find('#status').val(),
+				// 	form.find('#comment').val(),
+				// 	'/images/userImage.png',
+				// 	'category'
+				// );
+				main.overlay.fadeOut();
+				window.location.href = '/company';
+			});
+
+		}
+	}).validate({
+		errorElement: 'span',
+		// errorClass: 'has-error',
+		// errorPlacement: function errorPlacement(error, element) { element.after(error); },
+		errorPlacement: function errorPlacement(error, element) {
+			element.parent().parent().addClass('has-error');
+			element.parent().parent().find('label').append(error);
+		},
+		// messages: {
+		// 	'join[email]': "Please enter a valid email address.",
+		// 	'firstName': "Please enter a valid first name.",
+		// 	'lastName': "Please enter a valid last name."
+		// }
+		rules: {
+			percent: {
+				required: true,
+				range: [0, 100]
+			}
+			// confirm: {
+			//     equalTo: "#password-2"
+			// }
+		}
+	});
+	</script>
+
+	</body>
+</html>

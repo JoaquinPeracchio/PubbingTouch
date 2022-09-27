@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>Halecka - Categoria</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<!-- Meta, title, CSS, favicons, etc. -->
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="description" content="Halecka">
+
+	<%- include ('../partials/styles') %>
+	</head>
+
+<body data-mode="list" data-page="category" data-title="Categoria" data-description=" - Información" class="sidebar-mini fixed sidebar-mini-expand-feature skin-black sidebar-collapse">
+	<div class="wrapper">
+		<%- include ('../partials/topbar') %>
+
+		<%- include ('../partials/sidebar') %>
+
+		<!-- Content Wrapper. Contains page content -->
+		<div class="content-wrapper">
+
+			<section class="content">
+<!-- 	<div class="categoryFilter">
+		<a href="/category/register">
+			<button class="ui basic button">
+				<i class="icon warehouse"></i>
+				Agregar Categoria
+			</button>
+		</a>
+		<div class="ui right action left icon input">
+			<i class="search icon"></i>
+			<input class="stringFilter" type="text" placeholder="Search">
+			<select class="ui dropdown sortBy" style="display: none;">
+				<option value="titlename">Categoria</option>
+			</select>
+			<select class="ui dropdown sortOrder" style="display: none;">
+				<option value="1">Ascendente</option>
+				<option value="-1">Descentente</option>
+			</select>
+		</div>
+	</div>
+ -->
+				<div class="row">
+					<div class="col-md-12">
+						<div class="box-group accordion categorylist" id="accordion">
+							<!-- we are adding the .panel class so bootstrap.js collapse plugin detects it -->
+						</div>
+						<!-- /.box -->
+					</div>
+					<!-- /.col -->
+				</div>
+				<!-- /.row -->
+			</section>
+		</div>
+		<%- include ('../partials/footer') %>
+		<%- include ('../partials/chat') %>
+		<div class="chat-sidebar-bg"></div>
+		<div class="control-sidebar-bg"></div>
+
+	</div>
+	<!-- ./wrapper -->
+	<%- include ('../partials/modal') %>
+	<%- include ('../partials/compose') %>
+	<%- include ('../partials/scripts1') %>
+
+<script type="text/javascript">
+	company.getRelated(function(data) {
+		$.each(data.collection, function (i, item) {
+			main.getNotification(item);
+		});
+	});
+	category.getAll(function(data) {
+		$.each(data.collection, function (i, item) {
+			category.generate($('#accordion'), item);
+		});
+	});
+	category.populate();
+	$('.navbar-custom-menu .nav').prepend($('<li />')
+		.append($('<a />', { 'href': location.pathname + '/register' })
+			.prepend($('<i />', { 'class': 'fa fa-plus' }))
+		)
+	);
+	main.overlay.hide();
+</script>
+
+</body>
+</html>

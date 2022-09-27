@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>Halecka - Ingredients</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<!-- Meta, title, CSS, favicons, etc. -->
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="description" content="Halecka">
+
+	<%- include ('../partials/pubbing') %>
+	</head>
+
+<body data-mode="edit" data-page="ingredients" data-title="Ingredients" data-description=" - Edicion" class="sidebar-mini fixed sidebar-mini-expand-feature skin-black sidebar-collapse">
+	<div class="wrapper">
+	<%- include ('../partials/topbar') %>
+	<%- include ('../partials/sidebar') %>
+		<!-- Content Wrapper. Contains page content -->
+		<div class="content-wrapper">
+			<!-- Main content -->
+			<section class="content">
+				<!-- Info boxes -->
+				<div class="row">
+					<div class="col-md-12">
+						<div class="box box-success">
+							<div class="box-body">
+								<form id="ingredientsForm" action="#">
+	<h3 data-icon="fa fa-clock-o">Ingredients</h3>
+	<fieldset>							 
+		<input id="device" value="Web" name="device" type="hidden">
+		<input id="dialCode" name="dialCode" type="hidden">
+		<input id="country" name="country" type="hidden">
+
+		<div class="row">
+		<%
+		var   avatarLength = collection.avatar.length,
+		      indexAvatar = parseInt(collection.avatar.length) - 1,
+		      indexAvatarSub,
+		      fileAvatar = collection.avatar[indexAvatar];
+
+		if (fileAvatar instanceof Array && typeof fileAvatar.filename === 'undefined') {
+			indexAvatarSub = parseInt(fileAvatar.length) -1;
+			fileAvatar = fileAvatar[indexAvatarSub];
+		}
+		%>
+		<% if (typeof fileAvatar !== 'undefined') { %>
+			<div class="user-panel align-center">
+				<div>
+					<img src="/uploads/<%= fileAvatar.filename %>" class="img-circle userimg" style=" width: 15vw !important; height: 15vw !important;" alt="Imagen Ingredients">
+				</div>
+			</div>
+		<% } %>
+			<div class="col-xs-6">
+				<label class="form-control-label" for="avatar">Logo</label>
+				<div class="input-group">
+					<input class="avatar" type="file" id="avatar" data-name="avatar" name="avatar" class="form-control">
+				</div>
+			</div>
+			<div class="col-xs-6">
+				<label class="form-control-label" for="titlename">Ingredients</label>
+				<div class="input-group titlename" id="titlename">
+					<input type="text" name="titlename" value="<%= collection.titlename %>" class="form-control pull-right required">
+				</div>
+			</div>
+			<div class="col-xs-6">
+				<label class="form-control-label" for="ingredients">Ingredients</label>
+				<div class="input-group">
+					<span class="input-group-addon">
+						<i class="fa fa-file"></i>
+					</span>
+					<input type="file" multiple id="ingredients" data-name="ingredients" name="ingredients" class="form-control">
+				</div>
+			</div>
+			<div class="tab-pane col-xs-12" style="padding-top: 15px;">
+				<div class="row cards staff_users">
+				<%
+				if (typeof collection.staff_users !== 'undefined') {
+
+					for(var i=0; i < collection.staff_users.length; i++) {
+						collection.staff_users[i].name = collection.staff_users[i].name || collection.staff_users[i].file;
+						if (collection.staff_users[i] instanceof Array && typeof collection.staff_users[i] !== 'undefined') {
+							for(var index=0; index < collection.staff_users[i].length; index++) {
+								collection.staff_users[i][index].name = collection.staff_users[i][index].name || collection.staff_users[i][index].file;
+								%>
+					<div class="col-md-4 userid" data-id="<%= collection.staff_users[i][index]._id %>">
+						<div class="card-pf box border-color">
+							<div class="box-header text-center">
+								<i class="fa fa-user"></i>
+								<div class="box-tools pull-right">
+									<a class="btn btn-box-tool btn-delete" data-collection="users" data-id="<%= collection.staff_users[i][index]._id %>">
+									<input type="hidden" name="staff_id" value="<%= collection.staff_users[i][index]._id %>">
+									<i class="fa fa-remove"></i>
+									</a>
+								</div>
+							</div>
+							<div class="box-body no-padding btn btn-app no-margin fc-grid text-center capitalize"><%= collection.staff_users[i][index].name %></div>
+							<input type="hidden" name="staff_name" value="<%= collection.staff_users[i][index].name %>">
+							<div class="box-footer text-center no-padding">
+								<p class="no-margin capitalize"><%= collection.staff_users[i][index].actions %></p>
+								<input type="hidden" name="staff_actions" value="<%= collection.staff_users[i][index].actions %>">
+							</div>
+						</div>
+					</div>
+							<%
+							}
+						} else {
+							%>
+					<div class="col-md-4 userid" data-id="<%= collection.staff_users[i]._id %>">
+						<div class="card-pf box border-color">
+							<div class="box-header text-center">
+								<i class="fa fa-user"></i>
+								<div class="box-tools pull-right">
+									<a class="btn btn-box-tool btn-delete" data-collection="users" data-id="<%= collection.staff_users[i]._id %>">
+									<input type="hidden" name="staff_id" value="<%= collection.staff_users[i]._id %>">
+									<i class="fa fa-remove"></i>
+									</a>
+								</div>
+							</div>
+							<div class="box-body no-padding btn btn-app no-margin fc-grid text-center capitalize"><%= collection.staff_users[i].name %></div>
+							<input type="hidden" name="staff_name" value="<%= collection.staff_users[i].name %>">
+							<div class="box-footer text-center no-padding">
+								<p class="no-margin capitalize"><%= collection.staff_users[i].actions %></p>
+								<input type="hidden" name="staff_actions" value="<%= collection.staff_users[i].actions %>">
+							</div>
+						</div>
+					</div>
+					<%
+						}
+					}
+				}
+				%>
+				</div>
+				<div class="row cards newFiles">
+				</div>
+				<div class="row cards uploadedFiles">
+				</div>
+			</div>
+		</div>
+	</fieldset>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- /.row -->
+			</section>
+			<!-- /.content -->
+		</div>
+		<%- include ('../partials/footer') %>
+		<%- include ('../partials/chat') %>
+		<div class="chat-sidebar-bg"></div>
+		<div class="control-sidebar-bg"></div>
+
+	</div>
+	<!-- ./wrapper -->
+	<%- include ('../partials/modal') %>
+	<%- include ('../partials/compose') %>
+	<%- include ('../partials/scripts') %>
+	<!-- <script type="text/javascript" src="/js/ejs.js"></script> -->
+	<script type="text/javascript">
+
+	var form = $("#ingredientsForm").show();
+
+	var selectedLinea = $('#parent_linea').data('selected');
+
+	ingredients.getRelated(function(data){
+	});
+
+	form.steps({
+		headerTag: "h3",
+		// iconTag: "icon",
+		bodyTag: "fieldset",
+		transitionEffect: "slideLeft",
+		onInit: function (event, currentIndex, newIndex) {
+			main.fileOptions();
+		},
+		onStepChanging: function (event, currentIndex, newIndex) {
+			// Allways allow previous action even if the current form is not valid!
+			if (currentIndex > newIndex) {
+				return true;
+			}
+			form.validate().settings.ignore = ":disabled,:hidden";
+			return form.valid();
+		},
+		onStepChanged: function (event, currentIndex, priorIndex) {
+		},
+		onFinishing: function (event, currentIndex) {
+			form.validate().settings.ignore = ":disabled";
+			return form.valid();
+		},
+		onFinished: function (e, currentIndex) {
+			console.log("Submitted!");
+			e.preventDefault();
+
+			main.uploadFile($('#avatar'), 'avatar');
+			main.uploadFile($('#files'), 'files');
+
+			var serializedArr = $('form').serializeArray();
+			var collection = 'ingredients';
+			var mode = 'edit';
+
+			main.submit(collection, mode, serializedArr, function (data) {
+				console.log(data)
+				// socketio.sendNodeNotification(
+				// 	'parent_ingredients',
+				// 	form.find('#status').val(),
+				// 	form.find('#comment').val(),
+				// 	'/images/userImage.png',
+				// 	'category'
+				// );
+				main.overlay.fadeOut();
+				window.location.href = '/company';
+			});
+
+		}
+	}).validate({
+		errorElement: 'span',
+		errorPlacement: function errorPlacement(error, element) {
+			element.parent().parent().addClass('has-error');
+			element.parent().parent().find('label').append(error);
+		},
+		rules: {
+			percent: {
+				required: true,
+				range: [0, 100]
+			}
+		}
+	});
+	</script>
+
+	</body>
+</html>

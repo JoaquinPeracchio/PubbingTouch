@@ -1,0 +1,147 @@
+<html>
+<head>
+	<!-- Standard Meta -->
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+
+	<title>Login</title>
+
+	<link rel="stylesheet" type="text/css" href="/semantic/semantic.min.css">
+	<link rel="stylesheet" type="text/css" href="/css/intlTelInput.css">
+	<link rel="stylesheet" type="text/css" href="/css/main.css">
+</head>
+<body data-mode="edit">
+<%- include ('../partials/header') %>
+	<section>
+		<h2>Editar Tarifa</h2>
+
+		<form id="profileForm">
+			<input id="device" value="Web" name="device" type="hidden">
+			<input id="dialCode" name="dialCode" type="hidden">
+			<input id="country" name="country" type="hidden">
+			<div class="ui two column stackable grid">
+				<div class="column">
+					<label for="number">Numero de Ramal</label>
+					<div class="ui input">
+							<input id="number" name="number" required="" type="text" placeholder="Requerido" value="<%= ramal.number %>">
+					</div>
+				</div>
+				<div class="column">
+					<label for="parent">Empresa</label>
+					<div class="ui floating dropdown labeled search icon button selection noaddition">
+						<input type="hidden" name="parent" value="<%= ramal.parent %>>
+						<i class="tasks icon"></i>
+						<span class="text">Empresa</span>
+						<div class="menu parent"></div>
+					</div>
+				</div>
+			</div>
+			<div class="ui segment left aligned">
+				<div class="ui tiny header red">Beneficiaria</div>
+				<div class="ui list">
+					<div class="item">
+						<div class="ui toggle checkbox">
+							<input class="check" type="checkbox" name="gasoil" id="gasoil" <% if (ramal.subsidios.gasoil) { %>checked<% } %>>
+							<label for="gasoil">Gasoil</label>
+						</div>
+					</div>
+					<div class="item">
+						<div class="ui toggle checkbox">
+							<input class="check" type="checkbox" name="sistau" id="sistau" <% if (ramal.subsidios.sistau) { %>checked<% } %>>
+							<label for="sistau">SISTAU</label>
+						</div>
+					</div>
+					<div class="item">
+						<div class="ui toggle checkbox">
+							<input class="check" type="checkbox" name="rcc" id="rcc" <% if (ramal.subsidios.rcc) { %>checked<% } %>>
+							<label for="rcc">RCC</label>
+						</div>
+					</div>
+					<div class="item">
+						<div class="ui toggle checkbox">
+							<input class="check" type="checkbox" name="ccp" id="ccp" <% if (ramal.subsidios.ccp) { %>checked<% } %>>
+							<label for="ccp">CCP</label>
+						</div>
+					</div>
+					<div class="item">
+						<div class="ui toggle checkbox">
+							<input class="check" type="checkbox" name="amba" id="amba" <% if (ramal.subsidios.amba) { %>checked<% } %>>
+							<label for="amba">AMBA</label>
+						</div>
+					</div>
+				</div>
+			</div>
+			<h4 class="ui horizontal divider header">
+				<i class="tag icon"></i>
+				Documentaci&oacute;n
+			</h4>
+			<div class="ui two column stackable grid">
+				<div class="column">
+					<label for="autorizacion">Autorizacion</label>
+					<input class="autorizacion_file" type="file" name="myFile" />
+				</div>
+				<div class="column">
+					<label>Vencimiento</label>
+					<div class="ui calendar expiration" id="rangestart" data-unparsed="">
+						<div class="ui input left icon">
+							<i class="calendar icon"></i>
+							<input id="autorizacion_expiration" name="autorizacion.expiration" type="text" placeholder="Vencimiento">
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="ui two column stackable grid">
+				<div class="column">
+					<label for="renovacion">Renovaci&oacute;n</label>
+					<input class="renovacion_file" type="file" name="myFile" />
+				</div>
+				<div class="column">
+					<label>Vencimiento</label>
+					<div class="ui calendar expiration" id="rangestart" data-unparsed="">
+						<div class="ui input left icon">
+							<i class="calendar icon"></i>
+							<input id="renovacion_expiration" name="renovacion.expiration" type="text" placeholder="Vencimiento">
+						</div>
+					</div>
+				</div>
+			</div>
+			</div>
+
+			<div class="field">
+				<label>Asignar Administrador del Ramal </label>
+				<div id="ui-user-search" class="ui fluid input search">
+				<div class="ui icon input">
+					<input class="prompt" type="text" placeholder="Asignar Administrador">
+					<i class="search icon"></i>
+				</div>
+				<div class="results"></div>
+				</div>
+				<div class="adminUsers"></div>
+				</div>
+				<div class="uploadedFiles"></div>
+				</div>
+			</div>
+			<div class="ui divider"></div>
+			<div class="ui error message hidden">
+				<div class="header"></div>
+			</div>
+			<div class="ui one column stackable grid">
+				<div class="column">
+					<button id="submit" class="ui button">Enviar</button>
+				</div>
+			</div>
+		</form>
+	</section>
+	<%- include ('../partials/chat') %>
+	<%- include ('../partials/scripts') %>
+	<script type="text/javascript" src="/js/tarifas.js"></script>
+	<script type="text/javascript">
+		company.getRelated(function(data){
+			$.each(data.collection, function (iComp, itemComp) {
+				main.getNotification(itemComp);
+			});
+		});
+	</script>
+</body>
+</html>

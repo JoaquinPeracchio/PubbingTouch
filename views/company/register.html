@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>Halecka - Empresa</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<!-- Meta, title, CSS, favicons, etc. -->
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="description" content="Halecka">
+
+	<%- include ('../partials/styles') %>
+	</head>
+
+<body data-mode="register" data-page="company" data-title="Empresa" data-description=" - Registro" class="sidebar-mini fixed sidebar-mini-expand-feature skin-black sidebar-collapse">
+	<div class="wrapper">
+	<%- include ('../partials/topbar') %>
+	<%- include ('../partials/sidebar') %>
+		<!-- Content Wrapper. Contains page content -->
+		<div class="content-wrapper">
+			<!-- Main content -->
+			<section class="content">
+				<!-- Info boxes -->
+				<div class="row">
+					<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+						<div class="box box-success">
+							<div class="box-body">
+								<form id="companyForm" action="#">
+	<h3 data-icon="fa fa-clock-o">Empresa</h3>
+	<fieldset>							 
+		<input id="device" value="Web" name="device" type="hidden">
+		<input id="dialCode" name="dialCode" type="hidden">
+
+		<div class="row">
+			<div class="uploadAvatar user-panel align-center">
+				<div class="changeAvatar">
+					<img src="/images/missing-image.jpg" class="img-circle" style=" width: 15vw !important; height: 15vw !important;" alt="Imagen Empresa">
+					<div class="text-center">
+						<i class="fa fa-camera"></i>
+						<p>Actualizar</p>
+					</div>
+				</div>
+			</div>
+			<div class="hidden">
+				<label class="form-control-label" for="avatar">Logo</label>
+				<div class="input-group">
+					<input class="avatar" type="file" id="avatar" data-name="avatar" name="avatar" class="form-control">
+				</div>
+			</div>
+			<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+				<label class="form-control-label" for="titlename">Empresa</label>
+				<div class="input-group titlename" id="titlename">
+					<input type="text" name="titlename" class="form-control pull-right required">
+				</div>
+			</div>
+			<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+				<label class="form-control-label" for="slogan">Eslogan</label>
+				<div class="input-group slogan" id="slogan">
+					<input type="text" name="slogan" class="form-control pull-right required">
+				</div>
+			</div>
+			<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+				<label class="form-control-label" for="cuit">CUIT</label>
+				<div class="input-group cuit" id="cuit">
+					<input type="text" name="cuit" class="form-control pull-right required">
+				</div>
+			</div>
+			<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+				<label class="form-control-label" for="parent">Categoría Superior</label>
+				<div class="input-group search">
+					<span class="input-group-addon">
+						<i class="fa fa-search"></i>
+					</span>
+					<select id="parent" data-placeholder="Categoria Superior" class="form-control addon-left chosen-select">
+						<option value="" selected>Ninguna</option>
+					</select>
+				</div>
+			</div>
+		</div>
+	</fieldset>
+	<h3 data-icon="fa fa-globe">Ubicación</h3>
+	<fieldset>
+		<div class="row">
+			<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+				<label class="form-control-label" for="country">Pais</label>
+				<div class="input-group country">
+					<select id="country" name="country" type="text" class="form-control addon-left crs-country" data-region-id="region" data-default-value="Argentina" data-default-option="Seleccione Pais">
+					</select>
+				</div>
+			</div>
+			<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+				<label class="form-control-label" for="region">Provincia</label>
+				<div class="input-group">
+					<select id="region" name="region" type="text" class="form-control addon-left" data-default-option="Seleccione Provincia">
+					</select>
+				</div>
+			</div>
+			<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+				<label class="form-control-label" for="city">Ciudad</label>
+				<div class="input-group">
+					<input type="text" id="city" name="city" class="form-control pull-right required">
+				</div>
+			</div>
+			<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+				<label class="form-control-label" for="postal">Codigo Postal</label>
+				<div class="input-group">
+					<input type="text" id="postal" name="postal" class="form-control pull-right required">
+				</div>
+			</div>
+			<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+				<label class="form-control-label" for="address">Direccion</label>
+				<div class="input-group">
+					<input type="text" id="address" name="address" class="form-control pull-right required">
+				</div>
+			</div>
+			<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+				<label class="form-control-label" for="department">Piso /Dpto.</label>
+				<div class="input-group" id="department">
+					<input type="text" name="department" class="form-control pull-right required">
+				</div>
+			</div>
+			<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+				<label class="form-control-label" for="phone">Telefono</label>
+				<span id="valid-msg" class="hide">✓ Valido</span>
+				<span id="error-msg" class="hide"></span>
+				<div class="input-group">
+					<span class="input-group-addon">
+						<i class="fa fa-phone"></i>
+					</span>
+					<input id="phone" name="phone" type="tel" class="form-control addon-left">
+				</div>
+			</div>
+			<div class="tab-pane col-xs-12" style="padding-top: 15px;">
+				<div class="row cards newFiles">
+				</div>
+				<div class="row cards uploadedFiles">
+				</div>
+			</div>
+		</div>
+	</fieldset>
+	<h3 data-icon="fa fa-globe">Empleados</h3>
+	<fieldset>
+		<div class="row">
+			<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+				<label class="form-control-label" for="files">Archivos</label>
+				<div class="input-group">
+					<input type="file" multiple id="files" data-name="files" name="files" class="form-control">
+				</div>
+			</div>
+			<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+				<label class="form-control-label" for="staff_users">Asignar Usuarios</label>
+				<div class="input-group autocomplete">
+					<input type="text" id="staff_users" class="form-control">
+				</div>
+			</div>
+			<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+				<div class="input-group autocomplete">
+					<input type="button" value="Buscar" class="form-control search-user" />
+				</div>
+			</div>
+			<div class="tab-pane col-xs-12 col-sm-12 col-md-12 col-lg-12" style="padding-top: 15px;">
+				<div class="row cards staff_users">
+				</div>
+			</div>
+			<div class="tab-pane col-xs-12 col-sm-12 col-md-12 col-lg-12" style="padding-top: 15px;">
+				<div class="row cards newFiles">
+				</div>
+				<div class="row cards uploadedFiles">
+				</div>
+				<div class="row cards uploadedAvatar hidden">
+				</div>
+			</div>
+		</div>
+	</fieldset>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- /.row -->
+			</section>
+			<!-- /.content -->
+		</div>
+		<%- include ('../partials/footer') %>
+		<%- include ('../partials/chat') %>
+		<div class="chat-sidebar-bg"></div>
+		<div class="control-sidebar-bg"></div>
+
+	</div>
+	<!-- ./wrapper -->
+	<%- include ('../partials/modal') %>
+	<%- include ('../partials/compose') %>
+	<%- include ('../partials/scripts1') %>
+	<!-- <script type="text/javascript" src="/js/ejs.js"></script> -->
+
+	<script type="text/javascript">
+
+	var form = $("#companyForm").show();
+	var documents = {};
+	var position;
+	documents['filetypes'] = [
+		'estatuto',
+		'autoridades',
+		'fideicomiso',
+		'gestion',
+		'balance'
+	];
+
+	$(document).on('click', '.search-user', function () {
+		$.ajax({
+			// url: "/users/usersinfo",
+			url: "/users/finduser",
+			type:"POST",
+			async: true,
+			headers: { 
+				"Authorization": auth.access_token
+			},
+			dataType:"json",
+			data:{
+				search: $('#staff_users').val()
+			}
+		}).done(function( data ) {
+			console.log(data);
+			main.appendUsers($('.staff_users'), data.collection);
+		}).fail(function(data) {
+			console.log(data);
+		});
+	})
+
+	category.getAll(function(data){
+		categoryCollection = data.collection;
+		categoryList = Array.from(data.collection);
+		$.each(data.collection, function (i, item) {
+			$('#parent').append($('<option />', { 'class': 'id_' + item._id, 'value': item._id, text: main.toFUppercase(item.titlename) }))
+			// main.getNotification(item);
+		});
+		var config = {
+			'.chosen-select' : { no_results_text: 'No se encontro:' }
+		}
+		for (var selector in config) {
+			$(selector).chosen(config[selector]);
+		}
+	});
+	$.ajax({
+		url: users.getAll(),
+		success:function(){
+			var usersList = Array.from(users.collection);
+			$(document).on('click', '.staff_users a.btn-delete', function () {
+				var selected = main.findArr(users.collection, $(this).data('id'));
+				usersList.push(selected);
+				$(this).closest('.userid').remove();
+
+			})
+			if ($('.staff_users .userid').length !== 0) {
+				$.each($('.staff_users .userid'), function() {
+					usersList.splice(main.getIndex(usersList, $(this).data('id')), 1);
+				});
+			}
+			// main.autocomplete(
+			// 	$('#staff_users'),
+			// 	usersList,
+			// 	$('#searchCont'),
+			// 	$('#searchSort'),
+			// 	function(element, item) {
+			// 		element.append($('<li />', { 'data-id': item._id })
+			// 			.append($('<div />', { 'class': 'comp', text: item.transportCompany }))
+			// 			.append($('<div />', { 'class': 'user' })
+			// 				.append($('<div />', { 'class': 'result' })
+			// 					.append($('<div />', { 'class': 'title', text: item.firstname + ' ' + item.lastname }))
+			// 					.append($('<div />', { 'class': 'description', text: item.email }))
+			// 				)
+			// 			)
+			// 		);
+			// 	}, function (content, item, filterCont) {
+			// 		var selected = users.collection.find(selEl => selEl._id === item.data('id'));
+			// 		$('.staff_users')
+			// 		.append($('<div />', { 'class': 'col-xs-4 col-sm-4 col-md-4 col-lg-4 userid', 'data-id': selected._id })
+			// 			.append($('<div />', { 'class': 'card-pf box border-color' })
+			// 				.append($('<div />', { 'class': 'box-header text-center' })
+			// 					.append($('<div />', { 'class': 'box-tools pull-right' })
+			// 						.append($('<a />', { 'class': 'btn btn-box-tool btn-delete', 'data-collection': 'users', 'data-id': selected._id })
+			// 							.prepend($('<i />', { 'class': 'fa fa-remove' }))
+			// 						)
+			// 					)
+			// 					.prepend($('<i />', { 'class': 'fa fa-user' }))
+			// 				)
+			// 				.append($('<div />', { 'class': 'box-body no-padding btn btn-app no-margin fc-grid text-center capitalize', text: selected.firstname + ' ' + selected.lastname })
+			// 				)
+			// 				.append($('<div />', { 'class': 'box-footer text-center no-padding' })
+			// 					.append($('<p />', { 'class': 'no-margin capitalize', text: selected.role }))
+			// 				)
+			// 			)
+			// 			.append($('<input />', { 'type': 'hidden', 'name': 'staff_id', 'value': selected._id }))
+			// 			.append($('<input />', { 'type': 'hidden', 'name': 'staff_name', 'value': selected.firstname + ' ' + selected.lastname  }))
+			// 			.append($('<input />', { 'type': 'hidden', 'name': 'staff_actions', 'value': selected.role }))
+			// 		)
+			// 		usersList.splice(main.getIndex(usersList, item.data('id')), 1);
+			// 		console.log(item.data('id'));
+			// 		content.empty();
+			// 		filterCont.val('');
+			// 	}
+			// );
+		}
+	});
+	company.getRelated(function(data) {
+		$.each(data.collection, function (i, item) {
+			main.getNotification(item);
+		});
+	});
+	$(document).on('click', '.changeAvatar', function() {
+		$('#avatar').trigger('click');
+	});
+	$(document).on('change', '#avatar', function() {
+		main.selectedImage($('#avatar'), $('.uploadAvatar img'));
+	});
+	main.overlay.hide();
+
+	form.steps({
+		headerTag: "h3",
+		// iconTag: "icon",
+		bodyTag: "fieldset",
+		transitionEffect: "slideLeft",
+		onInit: function (event, currentIndex, newIndex) {
+			main.fileOptions(true, documents);
+			$('#avatar').on('change', function() {
+				main.selectedImage(this, $('.uploadAvatar img'));
+			});
+		},
+		onStepChanging: function (event, currentIndex, newIndex) {
+			// Allways allow previous action even if the current form is not valid!
+			if (currentIndex > newIndex) {
+				return true;
+			}
+			// Forbid next action on "Warning" step if the user is to young
+			if (newIndex === 2) {
+				var address = $('#address').val(),
+					city = $('#city').val(),
+					region = $('#region').val(),
+					country = $('#country').val();
+				$.ajax({
+					// url: "/users/usersinfo",
+					url: "https://atlas.microsoft.com/search/address/json",
+					type:"GET",
+					dataType:"json",
+					data:{
+						'subscription-key': 'jHDg0vlbmzGkPMVNoG-A3B7Qe59Pf0kTZbiBKTwwHO8',
+						'api-version': '1.0',
+						'language': 'es-AR',
+						'query': address + ', ' + city + ', ' + region + ', ' + country
+					}
+				}).done(function( data ) {
+					position = data.results[0].position;
+				}).fail(function(data) {
+					console.log(data);
+				});
+			}
+			// if (newIndex === 3 && Number($("#age-2").val()) < 18) {
+			// 	return false;
+			// }
+			// Needed in some cases if the user went back (clean up)
+			if (currentIndex < newIndex) {
+				// To remove error styles
+				form.find(".body:eq(" + newIndex + ") label.error").remove();
+				form.find(".body:eq(" + newIndex + ") .error").removeClass("error");
+			}
+			form.validate().settings.ignore = ":disabled,:hidden";
+			return form.valid();
+		},
+		onStepChanged: function (event, currentIndex, priorIndex) {
+			// Used to skip the "Warning" step if the user is old enough.
+			if (currentIndex === 2 && Number($("#age-2").val()) >= 18) {
+				form.steps("next");
+			}
+			// Used to skip the "Warning" step if the user is old enough and wants to the previous step.
+			if (currentIndex === 2 && priorIndex === 3) {
+				form.steps("previous");
+			}
+		},
+		onFinishing: function (event, currentIndex) {
+			form.validate().settings.ignore = ":disabled";
+			return form.valid();
+		},
+		onFinished: function (e, currentIndex) {
+			console.log("Submitted!");
+			e.preventDefault();
+
+			main.uploadAvatar($('#avatar'), 'avatar');
+			main.uploadFile($('#files'), 'files');
+
+			var serializedArr = $('form').serializeArray();
+			serializedArr.push({
+				name: 'dialCode', value: dialCode
+			},{
+				name: 'lat', value: position.lat
+			},{
+				name: 'lon', value: position.lon
+			});
+			var collection = 'company';
+			var mode = 'register';
+
+			main.submit(collection, mode, serializedArr, function (data) {
+				console.log(data)
+				// socketio.sendNodeNotification(
+				// 	'parent_company',
+				// 	form.find('#status').val(),
+				// 	form.find('#comment').val(),
+				// 	'/images/userImage.png',
+				// 	'category'
+				// );
+				main.overlay.fadeOut();
+				window.location.href = '/company';
+			});
+
+		}
+	}).validate({
+		errorElement: 'span',
+		// errorClass: 'has-error',
+		// errorPlacement: function errorPlacement(error, element) { element.after(error); },
+		errorPlacement: function errorPlacement(error, element) {
+			element.parent().parent().addClass('has-error');
+			element.parent().parent().find('label').append(error);
+		},
+		// messages: {
+		// 	'join[email]': "Please enter a valid email address.",
+		// 	'firstName': "Please enter a valid first name.",
+		// 	'lastName': "Please enter a valid last name."
+		// }
+		rules: {
+			percent: {
+				required: true,
+				range: [0, 100]
+			}
+			// confirm: {
+			//     equalTo: "#password-2"
+			// }
+		}
+	});
+	</script>
+
+	</body>
+</html>

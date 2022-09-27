@@ -1,0 +1,78 @@
+<!-- views/partials/chat.ejs -->
+
+<aside class="chat-sidebar chat-sidebar-dark" style="display: none;">
+    <div class="box box-warning direct-chat direct-chat-warning">
+      <div class="box-header with-border">
+        <h3 class="box-title">Chat</h3>
+
+        <div class="box-tools pull-right">
+          <button type="button" class="btn btn-box-tool" data-toggle="tooltip" title="" data-widget="chat-pane-toggle" data-original-title="Contacts">
+            <i class="fa fa-comments"></i></button>
+          <button type="button" class="btn btn-box-tool btn-room" data-toggle="tooltip" title="" data-widget="chat-room-pane-toggle" data-original-title="Rooms">
+            <i class="fa fa-bars"></i></button>
+        </div>
+      </div>
+      <!-- /.box-header -->
+      <div class="box-body">
+        <!-- Conversations are loaded here -->
+        <div class="direct-chat-messages">
+
+        </div>
+        <!--/.direct-chat-messages-->
+
+        <!-- Contacts are loaded here -->
+        <div class="direct-chat-contacts">
+          <ul class="contacts-list">
+            <li>
+              <a href="#">
+                <img class="contacts-list-img" src="/img/user1-128x128.jpg" alt="User Image">
+
+                <div class="contacts-list-info">
+                      <span class="contacts-list-name">
+                        Count Dracula
+                        <small class="contacts-list-date pull-right">2/28/2015</small>
+                      </span>
+                  <span class="contacts-list-msg">How have you been? I was...</span>
+                </div>
+                <!-- /.contacts-list-info -->
+              </a>
+            </li>
+            <!-- End Contact Item -->
+          </ul>
+          <!-- /.contatcts-list -->
+        </div>
+        <!-- /.direct-chat-pane -->
+        <!-- Contacts are loaded here -->
+        <div class="direct-chat-room">
+          <ul class="contacts-list">
+            <li>
+              <a href="#">
+                <img class="contacts-list-img" src="/img/user1-128x128.jpg" alt="User Image">
+
+                <div class="contacts-list-info">
+                      <span class="contacts-list-name">
+                        Count Dracula
+                        <small class="contacts-list-date pull-right">2/28/2015</small>
+                      </span>
+                  <span class="contacts-list-msg">How have you been? I was...</span>
+                </div>
+                <!-- /.contacts-list-info -->
+              </a>
+            </li>
+            <!-- End Contact Item -->
+          </ul>
+          <!-- /.contatcts-list -->
+        </div>
+        <!-- /.direct-chat-pane -->
+      </div>
+      <!-- /.box-body -->
+      <div class="box-footer" style="">
+          <div class="input-group" style="width: 100%;">
+            <input type="text" name="message" placeholder="Type Message ..." class="form-control chatMessage">
+          </div>
+      </div>
+      <!-- /.box-footer-->
+    </div>
+    <!--/.direct-chat -->
+</aside>
+<!-- /.chat-sidebar -->

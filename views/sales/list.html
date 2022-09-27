@@ -1,0 +1,900 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>Pubbing - Ventas</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<!-- Meta, title, CSS, favicons, etc. -->
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="description" content="Halecka">
+
+	<%- include ('../partials/pubbing') %>
+	<style type="text/css">
+
+@import url('https://fonts.googleapis.com/css2?family=Laila:wght@300;400;500;600;700&display=swap');
+
+input[type="number"] {
+	-webkit-appearance: textfield;
+	-moz-appearance: textfield;
+	appearance: textfield;
+	display: inline-block;
+	text-decoration: none;
+	font-size: 11px;
+	width: 40px;
+	height: 22px;
+	border-radius: 20px;
+	text-align: center;
+	line-height: 23px;
+	color: #000;
+	border: none;
+}
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+	-webkit-appearance: none;
+}
+
+.btn-up,
+.btn-down {
+	display: inline-block;
+	cursor: pointer;
+	margin: 0 5px;
+	border-radius: 100%;
+	background: #f3f3f3;
+	height: 20px;
+	width: 20px;
+	text-align: center;
+	line-height: 20px;
+	padding: 0 !important;
+	border: 1px solid transparent;
+	font-size: 10px;
+}
+
+h3.price {
+	font-size: 10px;
+	margin: 4px 0 !important;
+	height: 10px;
+}
+h2.titlename {
+	font-size: 11px;
+	font-weight: 500;
+	font-family: 'Laila', sans-serif;
+}
+p.description {
+	font-size: 7px;
+	font-family: 'Laila', sans-serif;
+}
+
+hr.clear {
+    margin: 0;
+}
+
+li.item-product.relative.border-bottom {
+    border-radius: 10px;
+}
+	</style>
+	</head>
+
+<body id="pubbing" data-mode="list" data-page="ingredients" data-title="Ventas" data-description=" - Control" class="sidebar-mini fixed sidebar-mini-expand-feature skin-black sidebar-collapse">
+	<div class="wrapper">
+
+		<%- include ('../partials/topbar') %>
+
+		<%- include ('../partials/sidebar') %>
+		<div class="content-wrapper">
+			<section class="content">
+				<div class="oval"></div>
+				<div class="row">
+
+<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+	<div class="row widgets">
+		<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 item">
+			<div class="card-pf box no-border">
+				<div class="box-header text-center">
+					<input type="date" class="pull-left">
+					<div class="box-tools">
+						<div class="btn btn-box-tool vegan"></div>
+					</div>
+				</div>
+				<div class="box-body btn no-margin fc-grid text-center capitalize">
+					<div class="input-group">
+						<span class="input-group-addon">
+							<i class="fa fa-bus"></i>
+						</span>
+						<input id="cabecera" class="cabecera form-control" placeholder="Cabecera" type="text" name="cabecera">
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 item">
+			<div class="card-pf box no-border">
+				<div class="box-header text-center">
+					<p class="no-margin capitalize sections_label">Terminal</p>
+				</div>
+				<div class="box-body btn no-margin fc-grid text-center capitalize">
+					<div class="input-group">
+						<span class="input-group-addon">
+							<i class="fa fa-bus"></i>
+						</span>
+						<input id="terminal" class="terminal form-control" type="text" name="terminal">
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 item">
+			<div class="card-pf box no-border">
+				<div class="box-body btn no-margin no-padding fc-grid text-center capitalize">
+					<div style="height: 94px;">
+						<canvas id="chart"></canvas>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+	<div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+		<ul>
+			<th>categorias</th>
+			<li>Promos</li>
+			<li>Burguers</li>
+			<li>Salads</li>
+			<li>Vegans</li>
+			<li>Celíacos</li>
+		</ul>
+	</div>
+	<div class="col-xs-9 col-sm-9 col-md-9 col-lg-9 no-padding">
+		<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+			<div class="input-group search">
+				<span class="input-group-addon">
+					<i class="fa fa-search"></i>
+				</span>
+				<input id="searchItems" type="text" class="form-control addon-left" placeholder="Buscar en el Stock">
+				<div class="filter">
+					<i class="fa fa-th"></i>
+					<i class="fa fa-list-ul"></i>
+				</div>
+			</div>
+		</div>
+		<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 no-padding">
+			<div class="box-body no-padding">
+				<form>
+<ul id="productList" style=" list-style: none;" class="col-xs-12 col-sm-12 col-md-12 col-lg-12 no-padding">
+</ul>
+				</form>
+			</div>
+			<div class="box-footer">
+				<ul id="searchCont" class="menu">
+				</ul>
+			</div>
+			<div class="add-item">
+				<div class="btn">
+					<i class="fa fa-plus"></i>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+
+					<div class="col-md-12">
+						<div class="box-group accordion ingredientslist" id="accordion">
+
+						</div>
+					</div>
+				</div>
+				<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 hidden">
+					<label class="form-control-label" for="stock">Agregar Ingrediente</label>
+					<div class="input-group autocomplete">
+						<input type="text" id="stock" name="stock" class="form-control">
+						<select id="searchSort" class="form-control">
+							<option value="name" selected>Nombre</option>
+							<option value="category">Categoria</option>
+						</select>
+					</div>
+					<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+					</div>
+				</div>
+				<div class="tab-pane col-xs-12 col-sm-12 col-md-12 col-lg-12" style="padding-top: 15px;">
+					<div class="row cards stock">
+					</div>
+				</div>
+			</section>
+		</div>
+		<%- include ('../partials/footer') %>
+		<%- include ('../partials/chat') %>
+		<div class="chat-sidebar-bg"></div>
+		<div class="control-sidebar-bg"></div>
+		<div class="modal" id="product-modal" aria-modal="true">
+			<div class="modal-dialog modal-xl">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h4 class="modal-title">Extra Large Modal</h4>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">×</span>
+						</button>
+					</div>
+					<div class="modal-body">
+						<form id="productosForm" action="#">
+<h3 data-icon="fa fa-shopping-basket">Productos</h3>
+<fieldset>							 
+	<input id="device" value="Web" name="device" type="hidden">
+	<input id="country" name="country" type="hidden">
+	<input id="product_id" name="product_id" type="hidden">
+	<div class="row">
+		<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+			<label class="form-control-label" for="brand">Marca</label>
+			<div class="input-group brand" id="brand">
+				<input id="brand-search-val" type="text" name="brand" class="form-control pull-right required">
+			</div>
+		</div>
+		<div class="tab-pane col-xs-6 col-sm-6 col-md-6 col-lg-6">
+			<label class="form-control-label" for="brand">&nbsp;</label>
+			<div class="input-group brand" id="brand">
+				<input type="button" class="form-control brand-btn" value="Buscar" />
+			</div>
+		</div>
+		<div id="search-brand" class="col-xs-12 col-sm-12 col-md-12 col-lg-12" style="display: none;">
+			<ul class="menu">
+			</ul>
+		</div>
+		<div class="tab-pane col-xs-6 col-sm-6 col-md-6 col-lg-6 product-btn" style="display: none;">
+			<label class="form-control-label" for="product">&nbsp;</label>
+			<div class="input-group product" id="product">
+				<input type="button" class="form-control" value="Nuevo Producto" />
+			</div>
+		</div>
+		<div id="select-product" class="col-xs-12 col-sm-12 col-md-12 col-lg-12" style="display: none;">
+			<ul class="menu">
+			</ul>
+		</div>
+		<div class="tab-pane col-xs-6 col-sm-6 col-md-6 col-lg-6 variant-btn" style="display: none;">
+			<label class="form-control-label" for="product">&nbsp;</label>
+			<div class="input-group product" id="product">
+				<input type="button" class="form-control" value="Nueva Variante" />
+			</div>
+		</div>
+		<div id="select-variant" class="col-xs-12 col-sm-12 col-md-12 col-lg-12" style="display: none;">
+			<ul class="menu">
+			</ul>
+		</div>
+	</div>
+</fieldset>
+						</form>
+					</div>
+					<div class="modal-footer justify-content-between">
+						<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+						<button type="button" class="btn btn-primary">Save changes</button>
+					</div>
+				</div>
+				<!-- /.modal-content -->
+			</div>
+			<!-- /.modal-dialog -->
+		</div>
+	<!-- ./wrapper -->
+	</div>
+	<%- include ('../partials/shop') %>
+	<%- include ('../partials/modal') %>
+	<%- include ('../partials/compose') %>
+	<%- include ('../partials/scripts') %>
+<script type="text/javascript" src="/js/functions/products.js"></script>
+<script type="text/javascript" src="/js/functions/ingredients.js"></script>
+<script type="text/javascript" src="/js/functions/productbrand.js"></script>
+<script type="text/javascript" src="/js/functions/productvariant.js"></script>
+<script type="text/javascript" src="/js/functions/sales.js"></script>
+<script type="text/javascript">
+
+	var ingredientes = [];
+	var brandsCollection = [];
+	var productInfo;
+	company.getRelated(function(data){
+		$.each(data.collection, function (i, item) {
+			main.getNotification(item);
+			main.getStock(item, ingredientes, function(productInfo, currProduct, itemVars, stockCollection){
+// if (typeof $('#productList li .item-match[data-id="' + productInfo._id + '"]').data('id') === 'undefined') { //Avoid duplicated but must show by companies
+					main.appendProducts($('#productList'), productInfo, currProduct, itemVars);
+// }
+			});
+		});
+		// ingredients.bindTabs();
+	});
+	// main.getRelated('stock', idEl, callback)
+	// $.ajax({
+	// 	url: '/js/JSON/products.json',
+	// 	success:function(data){
+	// 		console.log(data);
+	// 		var ingredientes = data.products;
+			// $.each(ingredientes, function(i, item) {
+			// 	var category = i;
+			// 	console.log(i);
+			// 	console.log(item);
+			// });
+			$(document).on('click', '.ingredients a.btn-delete', function () {
+				var selected = main.findArr(data, $(this).data('id'));
+				usersList.push(selected);
+				$(this).closest('.userid').remove();
+
+			})
+			if ($('.ingredients .userid').length !== 0) {
+				$.each($('.ingredients .userid'), function() {
+					ingredientes.splice(main.getIndex(usersList, $(this).data('id')), 1);
+				});
+			}
+$(document).on("click", '.copyEl', function(e){
+	main.clipboard($(this).data('value'));
+});
+$(document).on('click', '.brand-btn', function(){
+    main.getSearch('productbrand', $('#brand-search-val').val(), function(result){
+        console.log(result);
+        $('#search-brand ul').empty();
+        $('#select-product ul').empty();
+			$('#search-brand').show();
+			$('#search-brand ul')
+			.append($('<li />', { 'class': 'newItem comp brand', 'type': 'button' })
+				.append($('<div />', { 'class': '' })
+					.append($('<div />', { 'class': 'result' })
+						.append($('<div />', { 'class': 'title text-left', text: 'Nueva Marca' }))
+					)
+				)
+			);
+		$.each(result, function (i, item) {
+			var brandIndex = main.getIndexParam(brandsCollection, '_id', item._id);
+			if (brandIndex != -1){
+				console.log('exist');
+				brandsCollection.splice(brandIndex, 1);
+			}
+			brandsCollection.push(item);
+			productbrand.addItem($('#search-brand ul'), item);
+		});
+		$(document).on('click', '#search-brand ul .brand', function(){
+			$('#search-brand ul .brand').hide();
+			$('#search-brand ul').addClass('selected');
+			$('#select-product').show();
+			$(document).off('click', '#search-brand ul .brand');
+			if ($(this).hasClass('newItem')) {
+				productbrand.itemForm($('#search-brand ul'));
+			} else {
+				$(this).show();
+				var brandIndex = main.getIndexParam(brandsCollection, '_id', $(this).data('id'));
+				console.log($(this).data('id'));
+				$.each(brandsCollection[brandIndex].products, function (i, item) {
+					products.getById(item.product_id, function(product_item){
+					// main.getSearch('products', $('#brand-search-val').val(), function(product_item){
+						console.log(product_item);
+						var productsCollection = [];
+						productsCollection.push(product_item);
+						var productavatar = '/images/missing-image.jpg';
+						(typeof product_item.avatar !== 'undefined') ? productavatar = '/uploads/' + product_item.avatar[0].file : '';
+						$('#select-product ul')
+						.append($('<li />', { 'class': 'product', 'data-id': product_item._id })
+							.append($('<div />', { 'class': 'result' })
+								.append($('<img />', { 'class': 'pull-left img-circle thumb', 'src': productavatar }))
+								.append($('<div />', { 'class': 'title', text: product_item.titlename }))
+									.append($('<div />', { 'class': 'description' })
+										// .append($('<span />', { text: product_item.slogan }))
+									)
+								)
+							.append($('<ul />', { 'class': 'col-xs-12 col-sm-12 col-md-12 col-lg-12 no-padding clear' })
+								.append(
+									$.map(product_item.variant, function(mapEl, indexEl) {
+										var productavatar = '/images/missing-image.jpg';
+										(typeof mapEl.image !== 'undefined') ? productavatar = mapEl.image : '';
+										var inputValues = 
+										$('<li />', { 'class': 'box-body text-center' })
+											.append($('<div />', { 'class': 'col-xs-2 col-sm-2 col-md-2 col-lg-2' })
+												.append($('<img />', { 'class': 'pull-left img-circle thumb', 'src': productavatar }))
+											)
+											.append($('<div />', { 'class': 'col-xs-10 col-sm-10 col-md-10 col-lg-10' })
+												.append($('<div />', { 'class': 'input-group' })
+													.append($('<span />', { 'class': 'input-group-addon copyEl', 'data-value': product_item.titlename + ' ' + mapEl.item_content, 'title': product_item.titlename + ' ' + mapEl.item_content })
+														.prepend($('<i />', { 'class': 'fa fa-shopping-basket' }))
+													)
+													.append($('<div />', { text: product_item.titlename + ' - ' + mapEl.item_content, 'class': 'value form-control pull-right' }))
+												)
+											)
+											.append($('<div />', { 'class': 'col-xs-10 col-sm-10 col-md-10 col-lg-10' })
+												// .append($('<span />', { text: product_item.slogan }))
+												.append($('<div />', { 'class': 'input-group' })
+													.append($('<span />', { 'title': 'Codigo de Barras - ' + mapEl.barcode, 'class': 'input-group-addon barcode copyEl', 'data-value': mapEl.barcode })
+														.prepend($('<i />', { 'class': 'fa fa-barcode' }))
+													)
+													.append($('<span />', { 'title': 'Contenido - ' + mapEl.item_content, 'class': 'input-group-addon item_content copyEl', 'data-value': mapEl.item_content })
+														.prepend($('<i />', { 'class': 'fa fa-balance-scale' }))
+													)
+												)
+											);
+										var missingFile = $('<div />', { text: 'Falta Archivo' });
+										return (typeof mapEl !== 'undefined' && typeof mapEl !== 'undefined') ?
+											inputValues
+										: missingFile
+									})
+								)
+							)
+						);
+					});
+					console.log(item);
+				});
+				products.itemForm($('#select-product ul'))
+			}
+			$('#select-product ul').addClass('selected');
+		});
+    });
+});
+$('#searchItems').on('keypress',function(e) {
+    if(e.which == 13) {
+        $('.searchItem').trigger('click');
+    }
+});
+$(document).on("click", '.searchItem', function(e){
+	$('.stocklist-sidebar ul').empty();
+	main.getSearch('products', $('#searchItems').val(), function(result){
+		console.log(result);
+		$.each(result, function (i, item) {
+			if (typeof $('#productList li .item-match[data-id="' + item._id + '"]').data('id') === 'undefined') {
+				ingredientes.push(item);
+				$.each(item.variant, function (i, itemProduct) {
+					$('.stocklist-sidebar ul').append($('<li />', { 'class': 'predictive', 'data-id': item._id, 'data-sku': itemProduct.sku })
+						.append($('<div />', { 'class': 'comp', text: item.category }))
+						.append($('<div />', { 'class': 'user' })
+							.append($('<div />', { 'class': 'result' })
+								.append($('<img />', { 'class': 'pull-left img-circle thumb', 'src': itemProduct.image }))
+								.append($('<div />', { 'class': 'title', text: item.titlename + ' - ' + itemProduct.item_content }))
+									.append($('<div />', { 'class': 'description' })
+										.append($('<span />', { text: 'Marca: ' + item.brand + ' - ' }))
+									)
+							)
+						)
+					);
+				});
+			}
+		});
+	});
+	$('.stocklist-sidebar ul').append($('<li />', { 'class': 'btn newItem', 'type': 'button', 'data-toggle': 'modal', 'data-target': '#product-modal' })
+		.append($('<div />', { 'class': 'comp', text: 'Nuevo' }))
+		.append($('<div />', { 'class': 'user' })
+			.append($('<div />', { 'class': 'result' })
+				.append($('<div />', { 'class': 'title text-left', text: 'Nuevo Producto' }))
+			)
+		)
+	);
+	$(document).stocklistSidebar('open');
+});
+$(document).on('click', '#searchCont .predictive', function(e){
+	(!$('body').hasClass('shop-sidebar-open')) ? $('.shop_sidebar_btn').trigger('click') : '';
+
+	console.log($(this));
+	var selectedProdId = $(this).data('id');
+	var selectedProdSku = $(this).data('sku');
+	var currProduct = JSON.parse(window.localStorage.getItem('productsID-' + selectedProdId));
+	var skuIndex = main.getIndexParam(currProduct.variant, 'sku', selectedProdSku);
+	// if ($('.shop-sidebar .box-body .stock-items ul li.productGroups[data-id="' + selectedProdId + '"][data-sku="' + selectedProdSku + '"]').length == 0) {
+	// $('.shop-sidebar .box-body .stock-items ul.productGroups').append($('<li />', { 'class': 'item-product new relative', 'data-id': currProduct[0]._id, 'data-sku': currProduct[0].variant[skuIndex].sku })
+
+	if ($('.shop-sidebar .box-body .stock-items ul li.productGroups[data-id="' + selectedProdId + '"]').length == 0) {
+	$('.shop-sidebar .box-body .stock-items ul.productGroups').append($('<li />', { 'class': 'productGroups item-product new relative', 'data-id': currProduct._id })
+		.append($('<ul />', { 'class': 'no-padding' }))
+	)
+	}
+	if ($('.shop-sidebar .box-body .stock-items ul li.productGroups[data-id="' + selectedProdId + '"] ul li[data-sku="' + selectedProdSku + '"]').length == 0) {
+	ingredients.addStock($('.shop-sidebar .box-body .stock-items ul.productGroups li.productGroups[data-id="' + selectedProdId + '"] ul'), currProduct, skuIndex);
+	}
+});
+$(document).on("paste", function(e){
+	$('#searchItems').val('').focus();
+    // access the clipboard using the api
+    var pastedData = e.originalEvent.clipboardData.getData('text');
+    // $('#searchItems').trigger('change');
+    // $('#searchItems').focusout();
+    // alert(pastedData);
+
+});
+$(document).on('input', '#searchItems', function(){
+	var sortBy = 'sort',
+		searchBar = $('#searchItems').val(),
+		charLength = searchBar.length,
+		filterFlag = true;
+
+	(searchBar !== '') ? $('#productList li').hide() : $('#productList li').show();
+
+	if (searchBar.match(/^\d+$/) != null) {
+		sortBy = 'barcode';
+	}
+
+	if (searchBar.length >= 2) {
+		main.autocomplete(
+			$('#searchItems'),
+			ingredientes,
+			$('.stocklist-sidebar ul'),
+			sortBy,
+			10,
+			function(element, item, sortBy, globalItem) {
+				// console.log($('#productList li .' + sortBy).find("[data-value='" + matchedValue + "']"));
+				// $('#productList li .' + sortBy + '[data-value="' + matchedValue + '"]').closest('li').show();
+				if (typeof $('#productList li.item-product[data-sku="' + item.sku + '"]').data('id') !== 'undefined') {
+					$('#productList li[data-sku="' + item.sku + '"]').show();
+				} else {
+					element.append($('<li />', { 'class': 'predictive', 'data-id': globalItem._id, 'data-sku': item.sku })
+						.append($('<div />', { 'class': 'comp', text: globalItem.category }))
+						.append($('<div />', { 'class': 'user' })
+							.append($('<div />', { 'class': 'result' })
+								.append($('<img />', { 'class': 'pull-left img-circle thumb', 'src': item.image }))
+								.append($('<div />', { 'class': 'title', text: item.titlename + ' - ' + item.item_content }))
+									.append($('<div />', { 'class': 'description' })
+										.append($('<span />', { text: 'Marca: ' + globalItem.brand + ' - ' }))
+									)
+							)
+						)
+					);
+				}
+			}, function (content, item, filterCont) {
+				// console.log(content);
+				// console.log(item);
+				// console.log(filterCont);
+				// var selected = ingredientes.find(selEl => selEl._id === item.data('id'));
+				// $('.ingredient_name').val(selected.name);
+				// $('.ingredient_img').val(selected.image);
+				// $('.new-item .btn.logo.small').css({ 'background-image': 'url(' + selected.image + ')'});
+				// main.fillNutritional($('.properties'), selected);
+				// content.empty();
+				// content.hide();
+				// filterCont.val('');
+			}, function (element, count){
+				if (count == 0) {
+					$('#productList li').hide();
+					$('.stocklist-sidebar ul').empty().show();
+					$('.new-item .only-new').show();
+					$('.new-item .not-new').hide();
+					// element.hide();
+					element
+					// .append($('<li />', { 'class': 'btn newItem', 'type': 'button', 'data-toggle': 'modal', 'data-target': '#product-modal' })
+					// 	.append($('<div />', { 'class': 'comp', text: 'Nuevo' }))
+					// 	.append($('<div />', { 'class': 'user' })
+					// 		.append($('<div />', { 'class': 'result' })
+					// 			.append($('<div />', { 'class': 'title text-left', text: 'Nuevo Producto' }))
+					// 		)
+					// 	)
+					// );
+				} else {
+					$('.new-item .only-new').hide();
+					$('.new-item .not-new').show();
+					element.show();
+				}
+			}
+		);
+		$('.stocklist-sidebar ul').append($('<li />', { 'class': 'btn searchItem', 'type': 'button' })
+			.append($('<div />', { 'class': 'comp', text: 'Buscar' }))
+			.append($('<div />', { 'class': 'user' })
+				.append($('<div />', { 'class': 'result' })
+					.append($('<div />', { 'class': 'title text-left', text: 'Buscar Producto' }))
+				)
+			)
+		)
+	} else {
+		$('#productList li').show();
+		$('.stocklist-sidebar ul').empty();
+		$(document).stocklistSidebar('close');
+	}
+})
+
+$(document).on("click", '.addStock', function(e){
+	$.each($('.shop-sidebar .box-body .stock-items ul li.productGroups'), function(i, item){
+		var formArr = [];
+		formArr.push(
+			{ name: 'parent', value: '5e4d9a246e7195001204ea36'},
+			{ name: 'location', value: [
+				'-86.95444',
+				'33.40178'
+			]},
+			{ name: 'productId', value: $(this).data('id')}
+		);
+
+		if (main.getIndexParam(storestock, 'productId', $(this).data('id')) != -1) {
+			console.log('exist');
+		} else {
+			console.log('new');
+			$.each($('ul li.sku-item', this), function(i, item){
+				formArr.push(
+					{ name: 'variant_sku', value: $(this).data('sku')}
+				)
+				$.each($('input', this), function(i, item){
+					formArr.push(
+						{ name: $(this).attr('name'), value: $(this).val()}
+					)
+				})
+			})
+		}
+		console.log(formArr);
+		$.ajax({
+		    url: '/stock/register',
+		    type:"POST",
+		    async: false,
+		    headers: { 
+		        "Authorization": window.localStorage.getItem('access_token')
+		    },
+		    data: formArr,
+		    dataType:"json"
+		}).done(function( data ) {
+		    console.log(data.collection);
+		}).fail(function() {
+
+		});
+	});
+});
+
+// $(document).on('click', '.add-item', function() {
+//     $(this).parent().find('tbody')
+//     .append($('<tr />', { 'class': 'new-item' })
+//         .append($('<td />', { 'class': 'text-left pull-left-container', 'data-toggle': 'collapse', 'data-target': '.properties', 'aria-expanded': 'false' })
+// 			.append($('<span />', { })
+// 				.append($('<i />', { 'class':'fa fa-angle-left pull-left' }))
+// 			)
+//         )
+//         .append($('<td />', { 'class': 'relative' })
+//             .append($('<div />', { 'class': 'btn logo small empty-img' }))
+//             .append($('<input />', { 'class': 'ingredient_img', 'name': 'avatar', 'type': 'hidden' }))
+//         )
+//         .append($('<td />', { 'class': 'text-left' })
+//             .append($('<input />', { 'class': 'form-control ingredient_name', 'name': 'titlename', 'type': 'text' }))
+//         )
+//         .append($('<td />', { 'class': 'text-left not-new' })
+//             .append($('<input />', { 'class': 'form-control', 'name': 'cost', 'type': 'number' }))
+//         )
+//         .append($('<td />', { 'class': 'text-left not-new' })
+//             .append($('<input />', { 'class': 'form-control', 'name': 'measure', 'type': 'text' }))
+//         )
+//         .append($('<td />', { 'class': 'text-left not-new' })
+//             .append($('<input />', { 'class': 'form-control', 'name': 'quantity', 'type': 'number' }))
+//         )
+//         .append($('<td />', { 'class': 'text-left not-new' })
+// 			.append($('<div />', { 'class': 'btn submit', 'type': 'button' })
+// 				.append($('<i />', { 'class': 'fa fa-arrow-right' }))
+// 			)
+//         )
+//         .append($('<td />', { 'class': 'text-left only-new', 'style': 'display: none;' })
+// 			.append($('<div />', { 'class': 'btn', 'type': 'button', text: 'Nuevo Producto', 'data-toggle': 'modal', 'data-target': '#product-modal' })
+// 				.append($('<i />', { 'class': 'fa fa-arrow-right' }))
+// 			)
+//         )
+//     )
+//     main.nutritionalInfo($('form'));
+
+// 			main.autocomplete(
+// 				$('input.ingredient_name'),
+// 				ingredientes,
+// 				$('#searchCont'),
+// 				$('#searchSort'),
+// 				function(element, item) {
+// 					element.append($('<li />', { 'class': 'predictive', 'data-id': item._id })
+// 						.append($('<div />', { 'class': 'comp', text: item.category }))
+// 						.append($('<div />', { 'class': 'user' })
+// 							.append($('<div />', { 'class': 'result' })
+// 								.append($('<img />', { 'class': 'pull-left img-circle thumb', 'src': item.image }))
+// 								.append($('<div />', { 'class': 'title', text: item.name }))
+// 								.append($('<div />', { 'class': 'description' })
+// 									.append($('<span />', { text: 'Calorias: ' + item.nutricional[0].calorias + ' - ' }))
+// 									.append($('<span />', { text: 'HC: ' + item.nutricional[0].carbohidratos + ' - ' }))
+// 									.append($('<span />', { text: 'Proteinas: ' + item.nutricional[0].proteinas + ' - ' }))
+// 									.append($('<span />', { text: 'Grasas: ' + item.nutricional[0].lipidos }))
+// 								)
+// 							)
+// 						)
+// 					);
+// 				}, function (content, item, filterCont) {
+// 					var selected = ingredientes.find(selEl => selEl._id === item.data('id'));
+// 					$('.ingredient_name').val(selected.name);
+// 					$('.ingredient_img').val(selected.image);
+// 					$('.new-item .btn.logo.small').css({ 'background-image': 'url(' + selected.image + ')'});
+// 					main.fillNutritional($('.properties'), selected);
+// 					console.log(item.data('id'));
+// 					content.empty();
+// 					content.hide();
+// 					// filterCont.val('');
+// 				}, function (element, count){
+// 					console.log(count);
+// 					if (count == 0) {
+// 						$('.new-item .only-new').show();
+// 						$('.new-item .not-new').hide();
+// 						element.hide();
+// 					} else {
+// 						$('.new-item .only-new').hide();
+// 						$('.new-item .not-new').show();
+// 						element.show();
+// 						// element.append($('<li />', { 'class': 'newItem' })
+// 						// 	.append($('<div />', { 'class': 'comp', text: 'Nuevo' }))
+// 						// 	.append($('<div />', { 'class': 'user' })
+// 						// 		.append($('<div />', { 'class': 'result' })
+// 						// 			.append($('<div />', { 'class': 'title', text: 'Nuevo Producto' }))
+// 						// 		)
+// 						// 	)
+// 						// );
+// 					}
+// 				}
+// 			);
+// 			$(document).on('mouseenter', '#searchCont .predictive', function() {
+// 				console.log(this);
+// 			});
+// });
+	// 	}
+	// });
+
+	$(document).on('click', '.btn.submit', function() {
+		main.uploadAvatar($('#avatar'), 'avatar');
+
+		var serializedArr = $('form').serializeArray();
+		var parent_company = $('#parent').val();
+		var category = $('#category').val();
+		var collection = 'ingredients';
+		var mode = 'register';
+
+		main.submit(collection, mode, serializedArr, function (data) {
+			console.log(data)
+			// socketio.sendNodeNotification(
+			// 	parent_company,
+			// 	'Linea Creada',
+			// 	data.result.comment || '',
+			// 	'/uploads/' + data.result.avatar || '',
+			// 	data.result.parent,
+			// 	collection || '',
+			// 	data.result._id || ''
+			// );
+			main.overlay.fadeOut();
+			window.location.href = '/ingredients';
+		});
+	});
+
+	main.overlay.hide();
+
+var ctx = document.getElementById('chart').getContext('2d');
+// var ctx = $('#chart').getContext('2d');
+var chart = new Chart(ctx, {
+	// The type of chart we want to create
+	type: 'line',
+
+	// The data for our dataset
+	data: {
+		labels: ['', '', '', '', '', '', ''],
+		// labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+		datasets: [{
+			label: 'ingreso',
+			// backgroundColor: 'rgb(255, 99, 132)'–,
+			borderColor: 'rgb(67, 202, 72)',
+			data: [0, 10, 5, 2, 20, 30, 45]
+		},{
+			label: 'egreso',
+			borderColor: 'rgb(255, 0, 0)',
+			data: [5, 25, 10, 0, 50, 30, 45]
+		}]
+	},
+	// Configuration options go here
+	options: {
+		maintainAspectRatio: false,
+		scales: {
+			yAxes: [{
+				stacked: true,
+				gridLines: {
+					display: true,
+					color: "rgba(255,99,132,0.2)"
+				}
+			}],
+			xAxes: [{
+				gridLines: {
+					display: false
+				}
+			}]
+		}
+	}
+});
+
+	var form = $("#productosForm").show();
+	var documents = {};
+	documents['filetypes'] = [
+		'estatuto',
+		'autoridades',
+		'fideicomiso',
+		'gestion',
+		'balance'
+	];
+
+	form.steps({
+		headerTag: "h3",
+		// iconTag: "icon",
+		bodyTag: "fieldset",
+		transitionEffect: "slideLeft",
+		onInit: function (event, currentIndex, newIndex) {
+			$('.variant-btn').on('click', function(){
+				products.addVariant($('#productosForm fieldset .row.variant'), [
+					['barcode', 'Codigo de Barras', 'fa-barcode'],
+					['item_content', 'Contenido Neto', 'fa-file'],
+					['titlename', 'Titulo', 'fa-file'],
+					['description', 'Descripcion', 'fa-file']
+				]);
+			})
+			$('#avatar').on('change', function() {
+				main.selectedImage(this, $('.uploadAvatar img'));
+			});
+		},
+		onStepChanging: function (event, currentIndex, newIndex) {
+			// Allways allow previous action even if the current form is not valid!
+			if (currentIndex > newIndex) {
+				return true;
+			}
+			// Forbid next action on "Warning" step if the user is to young
+			if (newIndex === 3 && Number($("#age-2").val()) < 18) {
+				return false;
+			}
+			// Needed in some cases if the user went back (clean up)
+			if (currentIndex < newIndex) {
+				// To remove error styles
+				form.find(".body:eq(" + newIndex + ") label.error").remove();
+				form.find(".body:eq(" + newIndex + ") .error").removeClass("error");
+			}
+			form.validate().settings.ignore = ":disabled,:hidden";
+			return form.valid();
+		},
+		onStepChanged: function (event, currentIndex, priorIndex) {
+			// Used to skip the "Warning" step if the user is old enough.
+			if (currentIndex === 2 && Number($("#age-2").val()) >= 18) {
+				form.steps("next");
+			}
+			// Used to skip the "Warning" step if the user is old enough and wants to the previous step.
+			if (currentIndex === 2 && priorIndex === 3) {
+				form.steps("previous");
+			}
+		},
+		onFinishing: function (event, currentIndex) {
+			form.validate().settings.ignore = ":disabled";
+			return form.valid();
+		},
+		onFinished: function (e, currentIndex) {
+			console.log("Submitted!");
+			e.preventDefault();
+
+			main.uploadAvatar($('#avatar'), 'avatar');
+			main.uploadFile($('#files'), 'files');
+
+			var serializedArr = $('form').serializeArray();
+			var collection = 'company';
+			var mode = 'register';
+
+			main.submit(collection, mode, serializedArr, function (data) {
+				console.log(data)
+				// socketio.sendNodeNotification(
+				// 	'parent_company',
+				// 	form.find('#status').val(),
+				// 	form.find('#comment').val(),
+				// 	'/images/userImage.png',
+				// 	'category'
+				// );
+				main.overlay.fadeOut();
+				window.location.href = '/company';
+			});
+
+		}
+	}).validate({
+		errorElement: 'span',
+		// errorClass: 'has-error',
+		// errorPlacement: function errorPlacement(error, element) { element.after(error); },
+		errorPlacement: function errorPlacement(error, element) {
+			element.parent().parent().addClass('has-error');
+			element.parent().parent().find('label').append(error);
+		},
+		// messages: {
+		// 	'join[email]': "Please enter a valid email address.",
+		// 	'firstName': "Please enter a valid first name.",
+		// 	'lastName': "Please enter a valid last name."
+		// }
+		rules: {
+			percent: {
+				required: true,
+				range: [0, 100]
+			}
+			// confirm: {
+			//     equalTo: "#password-2"
+			// }
+		}
+	});
+</script>
+</body>
+</html>

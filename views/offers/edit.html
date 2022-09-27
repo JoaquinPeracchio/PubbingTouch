@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>Halecka - Ofertas</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<!-- Meta, title, CSS, favicons, etc. -->
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="description" content="Halecka">
+
+	<%- include ('../partials/styles') %>
+	</head>
+
+<body data-mode="edit" data-page="offers" data-title="Ofertas" data-description=" - Edicion" class="sidebar-mini fixed sidebar-mini-expand-feature skin-black sidebar-collapse">
+	<div class="wrapper">
+	<%- include ('../partials/topbar') %>
+	<%- include ('../partials/sidebar') %>
+		<!-- Content Wrapper. Contains page content -->
+		<div class="content-wrapper">
+			<!-- Main content -->
+			<section class="content">
+				<!-- Info boxes -->
+				<div class="row">
+					<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+						<div class="box box-success">
+							<div class="box-body">
+								<form id="offersForm" action="#">
+	<h3 data-icon="fa fa-clock-o">Ofertas</h3>
+	<fieldset>							 
+		<input id="device" value="Web" name="device" type="hidden">
+		<input id="dialCode" name="dialCode" type="hidden">
+		<input id="country" name="country" type="hidden">
+
+		<div class="row">
+		<%
+		var   avatarLength = collection.avatar.length,
+		      indexAvatar = parseInt(collection.avatar.length) - 1,
+		      indexAvatarSub,
+		      fileAvatar = collection.avatar[indexAvatar];
+
+		if (fileAvatar instanceof Array && typeof fileAvatar.file === 'undefined') {
+			indexAvatarSub = parseInt(fileAvatar.length) -1;
+			fileAvatar = fileAvatar[indexAvatarSub];
+		}
+		%>
+			<div class="uploadAvatar user-panel align-center">
+				<div class="changeAvatar">
+		<% if (typeof fileAvatar !== 'undefined') { %>
+					<img src="/uploads/<%= fileAvatar.file %>" class="img-circle" style=" width: 15vw !important; height: 15vw !important;" alt="Imagen Ofertas">
+		<% } else { %>
+					<img src="/images/missing-image.jpg" class="img-circle" style=" width: 15vw !important; height: 15vw !important;" alt="Imagen Ofertas">
+		<% } %>
+					<div class="text-center">
+						<i class="fa fa-camera"></i>
+						<p>Actualizar</p>
+					</div>
+				</div>
+			</div>
+			<div class="hidden">
+				<label class="form-control-label" for="avatar">Logo</label>
+				<div class="input-group">
+					<input class="avatar" type="file" id="avatar" data-name="avatar" name="avatar" class="form-control">
+				</div>
+			</div>
+			<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+				<label class="form-control-label" for="titlename">Titulo</label>
+				<div class="input-group titlename" id="titlename">
+					<input type="text" name="titlename" value="<%= collection.titlename %>" class="form-control pull-right required">
+				</div>
+			</div>
+			<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+				<label class="form-control-label" for="slug">Slug</label>
+				<div class="input-group slug" id="slug">
+					<input type="text" name="slug" value="<%= collection.slug %>" class="form-control pull-right required">
+				</div>
+			</div>
+			<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+				<label class="form-control-label" for="parent">Categoría Superior</label>
+				<div class="input-group search">
+					<span class="input-group-addon">
+						<i class="fa fa-search"></i>
+					</span>
+					<select id="parent" name="parent" data-placeholder="Ofertas Superior" class="form-control addon-left chosen-select">
+						<option value="">Ninguna</option>
+					</select>
+				</div>
+			</div>
+			<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+				<label class="form-control-label" for="type">Tipo</label>
+				<div class="input-group">
+					<select id="type" name="type" class="form-control addon-left chosen-select">
+						<option value="all">Todos</option>
+						<option value="products">Productos</option>
+						<option value="services">Servicios</option>
+						<option value="promos">Promociones</option>
+						<option value="business">Negocio</option>
+					</select>
+				</div>
+			</div>
+			<div class="tab-pane col-xs-12 col-sm-12 col-md-12 col-lg-12" style="padding-top: 15px;">
+				<div class="row cards newFiles">
+				</div>
+				<div class="row cards uploadedFiles">
+				</div>
+				<div class="row cards uploadedAvatar hidden">
+				</div>
+			</div>
+		</div>
+	</fieldset>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- /.row -->
+			</section>
+			<!-- /.content -->
+		</div>
+		<%- include ('../partials/footer') %>
+		<%- include ('../partials/chat') %>
+		<div class="chat-sidebar-bg"></div>
+		<div class="control-sidebar-bg"></div>
+
+	</div>
+	<!-- ./wrapper -->
+	<%- include ('../partials/modal') %>
+	<%- include ('../partials/compose') %>
+	<%- include ('../partials/scripts1') %>
+	<!-- <script type="text/javascript" src="/js/ejs.js"></script> -->
+	<script type="text/javascript">
+	var itemId = "<%= collection._id %>";
+	var parent =  "<%= collection.parent %>";
+	var type =  "<%= collection.type %>";
+	var avatarChanged = false;
+	var form = $("#offersForm").show();
+	var offersCollection;
+	var offersList
+	var selectedLinea = $('#parent').data('selected');
+	var documents = {};
+	documents['filetypes'] = [
+		'autorizacion',
+		'renovacion'
+	];
+
+
+	var form = $("#offersForm").show();
+
+	form.steps({
+		headerTag: "h3",
+		// iconTag: "icon",
+		bodyTag: "fieldset",
+		transitionEffect: "slideLeft",
+		onInit: function (event, currentIndex, newIndex) {
+			companies.getAll(function(data){
+				offersCollection = data.collection;
+				offersList = Array.from(data.collection);
+				$.each(data.collection, function (i, item) {
+					if (item._id != itemId) {
+						$('#parent').append($('<option />', { 'class': 'id_' + item._id, 'value': item._id, text: main.toFUppercase(item.titlename) }))
+					}
+					if (item._id == parent) {
+						$('#parent option[value=' + parent +']').attr('selected', 'selected');
+						$('#parent').siblings('.chosen-container').find('.chosen-single span').text(main.toFUppercase(item.titlename));
+					}
+					// main.getNotification(item);
+				});
+				var config = {
+					'.chosen-select' : { no_results_text: 'No se encontro:' }
+				}
+				for (var selector in config) {
+					$(selector).chosen(config[selector]);
+				}
+				$(document).on('change', '#parent', function(){
+					$('#parent option[value=' + $(this).val() +']').attr('selected', 'selected')
+				});
+				$(document).on('change', '#type', function(){
+					$('#type option[value=' + $(this).val() +']').attr('selected', 'selected')
+				});
+				if (type !== '') {
+					$('#type option[value=' + type +']').attr('selected', 'selected');
+					$('#type').siblings('.chosen-container').find('.chosen-single span').text($('#type option[value=' + type +']').text());
+				}
+			});
+			main.fileOptions(true, documents);
+			$(document).on('click', '.changeAvatar', function() {
+				$('#avatar').trigger('click');
+			});
+			$(document).on('change', '#avatar', function() {
+				main.selectedImage(this, $('.uploadAvatar img'));
+				main.selectedImage($('#avatar'), $('.uploadAvatar img'));
+				avatarChanged = true;
+			});
+			main.overlay.hide();
+		},
+		onStepChanging: function (event, currentIndex, newIndex) {
+			// Allways allow previous action even if the current form is not valid!
+			if (currentIndex > newIndex) {
+				return true;
+			}
+			// Forbid next action on "Warning" step if the user is to young
+			if (newIndex === 3 && Number($("#age-2").val()) < 18) {
+				return false;
+			}
+			// Needed in some cases if the user went back (clean up)
+			if (currentIndex < newIndex) {
+				// To remove error styles
+				form.find(".body:eq(" + newIndex + ") label.error").remove();
+				form.find(".body:eq(" + newIndex + ") .error").removeClass("error");
+			}
+			form.validate().settings.ignore = ":disabled,:hidden";
+			return form.valid();
+		},
+		onStepChanged: function (event, currentIndex, priorIndex) {
+			// Used to skip the "Warning" step if the user is old enough.
+			if (currentIndex === 2 && Number($("#age-2").val()) >= 18) {
+				form.steps("next");
+			}
+			// Used to skip the "Warning" step if the user is old enough and wants to the previous step.
+			if (currentIndex === 2 && priorIndex === 3) {
+				form.steps("previous");
+			}
+		},
+		onFinishing: function (event, currentIndex) {
+			form.validate().settings.ignore = ":disabled";
+			return form.valid();
+		},
+		onFinished: function (e, currentIndex) {
+			console.log("Submitted!");
+			e.preventDefault();
+
+			(avatarChanged) ? main.uploadAvatar($('#avatar'), 'avatar') : $('#avatar').remove();
+
+			var serializedArr = $('form').serializeArray();
+			var parent = $('#parent').val();
+			var offers = $('#offers').val();
+			var collection = 'offers';
+			var mode = 'edit';
+
+			main.submit(collection, mode, serializedArr, function (data) {
+				console.log(data)
+				// socketio.sendNodeNotification(
+				// 	parent,
+				// 	form.find('#status').val(),
+				// 	form.find('#comment').val(),
+				// 	'/images/userImage.png',
+				// 	offers
+				// );
+				main.overlay.fadeOut();
+				window.location.href = '/offers';
+			});
+
+		}
+	}).validate({
+		errorElement: 'span',
+		// errorClass: 'has-error',
+		// errorPlacement: function errorPlacement(error, element) { element.after(error); },
+		errorPlacement: function errorPlacement(error, element) {
+			element.parent().parent().addClass('has-error');
+			element.parent().parent().find('label').append(error);
+		},
+		// messages: {
+		// 	'join[email]': "Please enter a valid email address.",
+		// 	'firstName': "Please enter a valid first name.",
+		// 	'lastName': "Please enter a valid last name."
+		// }
+		rules: {
+			percent: {
+				required: true,
+				range: [0, 100]
+			}
+			// confirm: {
+			//     equalTo: "#password-2"
+			// }
+		}
+	});
+	</script>
+
+	</body>
+</html>

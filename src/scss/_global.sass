@@ -1,0 +1,604 @@
+.animate
+	-webkit-transition: all .3s ease-out;
+	-moz-transition: all .3s ease-out;
+	-ms-transition: all .3s ease-out;
+	-o-transition: all .3s ease-out;
+	transition: all .3s ease-out;
+
+body
+	background-color: #f4f8f9;
+	font-size: 10px;
+	margin: 9vh 25vh;
+	font-family: roboto;
+	@include media("<=phone")
+		margin: 0;
+	@include media("<=phlandscape")
+		margin: 0;
+	@include media(">phlandscape", "<desktop")
+		margin: 4vh 5vw;
+
+.box
+	margin-bottom: 4vh;
+	background-color: #fff;
+
+header.box
+	@include media("<=phone")
+		background-color: #f4f8f9;
+	@include media("<phlandscape")
+		background-color: #f4f8f9;
+
+.box--shadow
+	-webkit-box-shadow: -1px 1px 2px rgba(50, 50, 93, 0.21), 1px 1px 2px rgba(50, 50, 93, 0.21);
+	-moz-box-shadow: -1px 1px 2px rgba(50, 50, 93, 0.21), 1px 1px 2px rgba(50, 50, 93, 0.21);
+	box-shadow: -1px 1px 2px rgba(50, 50, 93, 0.21), 1px 1px 2px rgba(50, 50, 93, 0.21);
+
+.header-menu
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-end;
+	align-items: center;
+	padding: 3vh 2vw;
+
+.btn
+	cursor: pointer;
+	padding: 10px 20px;
+
+.btn--uppercase
+	text-transform: uppercase;
+
+.btn--capitalize
+	text-transform: capitalize;
+
+.btn--blue-inverted
+	border: 1px solid #2a7ee4;
+	-webkit-border-radius: 2px;
+	-moz-border-radius: 2px;
+	border-radius: 2px;
+	color: #2a7ee4;
+	font-weight: bold;
+	font-size: 1em;
+	padding: 6px 16px;
+	text-transform: uppercase;
+	@include media("<=phone")
+		background-color: transparent;
+		border: none;
+	@include media("<phlandscape")
+		background-color: transparent;
+		border: none;
+
+.upload-file
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+	@include media("<=phone")
+		display: none;
+	@include media("<phlandscape")
+		display: none;
+
+.btn--grey-inverted
+	border: 1px solid #d8e3ea;
+	-webkit-border-radius: 2px
+	-moz-border-radius: 2px
+	border-radius: 2px
+	color: #d8e3ea;
+	padding: 6px 17px;
+	text-transform: capitalize;
+	font-size: 1em;
+	background: transparent;
+
+.btn__icon
+	font-size: 2em;
+
+.btn__text
+	color: #98a1a8;
+	display: block;
+	font-size: 1.2em;
+	font-weight: normal;
+	float: right;
+	line-height: 20px;
+	padding-left: 12px;
+	text-transform: capitalize;
+
+
+.input--hidden
+	display: none;
+
+.user
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-start;
+	align-items: flex-start;
+	height: 92px;
+	@include media("<=phone")
+		height: auto;
+		flex-direction: column;
+		align-items: initial;
+	@include media("<phlandscape")
+		height: auto;
+		flex-direction: column;
+		align-items: initial;
+
+.photo
+	height: 22vh;
+	margin: 0;
+	overflow: hidden;
+	position: relative;
+	top: -10px;
+	width: 22vh;
+	margin-left: 1.3vw;
+	@include media("<=phone")
+		align-self: center;
+	@include media("<phlandscape")
+		align-self: center;
+
+.photo__img
+	left: -101px;
+	position: relative;
+	top: -25px;
+	z-index: 9;
+	-webkit-transform: scale(0.82);
+	-moz-transform: scale(0.82);
+	-o-transform: scale(0.82);
+
+.photo--changed
+	left: 0 !important;
+	top: 0 !important;
+	-webkit-transform: scale(1);
+	-moz-transform: scale(1);
+	-o-transform: scale(1);
+	height: 100%;
+	width: auto;
+
+.user-data
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+	align-items: flex-start;
+	margin-left: 15px;
+	@include media("<=phone")
+		color: #727e87;
+	@include media("<phlandscape")
+		color: #727e87;
+
+.user-data__name
+	font-family: roboto;
+	font-weight: normal;
+	font-size: 1.7em;
+	margin: 17px 0 5px;
+	@include media("<=phone")
+		align-self: center;
+		color: #000;
+	@include media("<phlandscape")
+		align-self: center;
+		color: #000;
+
+.user-data__description
+	font-size: 1.2em;
+	font-family: roboto;
+	margin: 5px 0;
+
+.user-data__icon
+	color: #c5d0d7;
+	font-size: 1.3em;
+	float: left;
+
+.user-data__description-text
+	padding: 10px;
+
+.user-data__score
+	margin-left: auto;
+	padding: 3vh 1.5vw 0 0;
+	@include media("<=phone")
+		margin-left: 15px;
+		padding: 5px 0;
+	@include media("<phlandscape")
+		margin-left: 15px;
+		padding: 5px 0;
+
+.user-data__icon-score
+	font-size: 1.5em;
+	padding: 0 2px;
+	@include media("<=phone")
+		color: #2a7ee4;
+		padding-bottom: 10px;
+	@include media("<phlandscape")
+		color: #2a7ee4;
+		padding-bottom: 10px;
+
+.user-data__review
+	float: right;
+	margin: 0;
+	font-size: 1.2em;
+	text-transform: capitalize;
+	@include media("<=phone")
+		float: none;
+		color: #727e87;
+	@include media("<phlandscape")
+		float: none;
+		color: #727e87;
+
+.user-data__review-amount
+	margin: 0 10px 0 20px;
+	@include media("<=phone")
+		margin: 10px 10px 0 0;
+	@include media("<phlandscape")
+		margin: 10px 10px 0 0;
+
+.user-nav::-webkit-scrollbar
+	width: 0 !important
+.user-nav
+	margin-top: 7px;
+	position: relative;
+	padding-left: 170px;
+	border-top: 1px solid #e2e2e2;
+	overflow: -moz-scrollbars-none;
+	-ms-overflow-style: none;
+	@include media("<=phone")
+		padding-left: 0;
+		background-color: #FFF;
+	@include media("<phlandscape")
+		padding-left: 0;
+		background-color: #FFF;
+
+.user-nav ul
+	list-style: none;
+	height: 50px;
+	margin: 0;
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-start;
+	align-items: flex-start;
+	padding-left: 0;
+	@include media("<=phone")
+		overflow-x: scroll;
+	@include media("<phlandscape")
+		overflow-x: scroll;
+.user-nav__list
+	line-height: 50px;
+	text-transform: uppercase;
+	font-family: roboto;
+	font-size: 1.35em;
+	color: #656a6f;
+	padding: 0px 9px;
+	cursor: pointer;
+	height: 100%;
+
+.user-nav__link
+	text-decoration: none;
+	color: #818689;
+	position: relative;
+	display: inline-block;
+	line-height: 48px;
+	overflow: hidden;
+
+.user-nav--active .user-nav__link
+	border-bottom: 2px solid #308dfa;
+
+.user-nav__link.user-nav--active:before
+	content: '';
+	position: absolute;
+	bottom: 0px;
+	// border: 1px solid #70befb;width: 100%;
+
+.user-nav__followers
+	color: #656a6f;
+	margin-left: auto;
+	font-size: 1em;
+	padding-right: 20px;
+	@include media("<=phone")
+		display: none;
+	@include media("<phlandscape")
+		display: none;
+
+.user-nav__followers-mobile
+	display: none;
+	@include media("<=phone")
+		margin-left: 15px;
+		display: block !important;
+	@include media("<phlandscape")
+		margin-left: 15px;
+		display: block !important;
+
+.user-nav__icon-add
+	font-size: 2.4em;
+	margin: 10px;
+	float: left;
+	@include media("<=phone")
+		margin-left: 0;
+	@include media("<phlandscape")
+		margin-left: 0;
+
+.user-nav__followers-text
+	font-size: 1.2em;
+	line-height: 47px;
+	text-transform: capitalize;
+
+section.box
+	@include media("<=phone")
+		overflow: hidden;
+	@include media("<phlandscape")
+		overflow: hidden;
+
+.user-content
+	width: 500vw;
+	position: relative;
+	display: inline-flex;
+	flex-flow: row;
+	justify-content: flex-start;
+	align-items: flex-start;
+
+.user-nav-content
+	padding: 4vh 2.5vw;
+	display: none;
+	position: relative;
+	@include media("<=phone")
+		display: inline-block;
+		width: 95vw;
+	@include media("<phlandscape")
+		display: inline-block;
+		width: 95vw;
+
+.user-nav-content--active
+	display: block;
+
+.user-nav__btn-container
+	position: absolute;
+	top: 6vh;
+	right: 30px;
+
+.user-nav__btn-container .user-nav__edit-btn
+	display: none;
+	top: 4vh;
+	right: 4vw;
+	height: 30px;
+	width: 30px;
+	background-color: #ecf1f5;
+	border: none;
+	color: #727e87;
+	@include media("<=phone")
+		display: block;
+
+.user-nav__btn-container .user-nav__btn
+	display: none;
+
+.edit .user-nav__btn-container .user-nav__edit-btn
+	display: none;
+
+.edit .user-nav__btn-container .user-nav__btn
+	float: right;
+	color: #2a7ee4;
+	display: block;
+	background-color: transparent;
+	border: none;
+	text-transform: uppercase;
+	font-size: 1.2em;
+	font-weight: normal;
+
+.user-nav-content__title
+	color: #727e87;
+	font-size: 2em;
+	margin: 1vh 0 4vh;
+	@include media("<=phone")
+		margin: 1vh 0 2vh;
+		font-weight: lighter;
+	@include media("<phlandscape")
+		margin: 1vh 0 2vh;
+		font-weight: lighter;
+
+.user-edit
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+	align-items: flex-start;
+	padding: 0;
+	list-style: none;
+
+.user-edit__item
+	display: inline;
+	color: #727e87;
+	background-color: #f6f7f9;
+	margin-bottom: 1px;
+	padding-left: 5px;
+	position: relative;
+	@include media("<=phone")
+		background-color: transparent;
+	@include media("<phlandscape")
+		background-color: transparent;
+
+.user-edit__value
+	font-size: 1.4em;
+	padding: 6px 8px 6px 0;
+	background-color: #f6f7f9;
+	max-height: 30px;
+	display: inline-block;
+	position: relative;
+	@include media("<=phone")
+		background-color: transparent;
+	@include media("<phlandscape")
+		background-color: transparent;
+
+.user-edit__name
+	@include media("<=phone")
+		color: #000;
+	@include media("<phlandscape")
+		color: #000;
+
+.edit .user-edit__name
+	display: none;
+
+.user-edit__btn
+	height: 30px;
+	width: 30px;
+	display: inline-block;
+	margin: 0;
+	border: none;
+	background-color: #ecf1f5;
+	font-size: 1.5em;
+	color: #727e87;
+	cursor: pointer;
+
+.user-edit .user-edit__btn
+	@include media("<=phone")
+		display: none !important;
+	@include media("<phlandscape")
+		display: none !important;
+
+.user-edit__btn:hover
+	background-color: #297ee6;
+	color: #FFF;
+
+.user-edit__value-icon
+	padding: 8px 8px 0 0;
+	font-size: 1.4em;
+	float: left;
+.edit .user-edit__value-icon
+	display: none;
+
+.user-edit--sm
+	font-size: 1.2em;
+	padding-right: 20px;
+
+.edit .user-edit--sm
+	display: none;
+
+
+.user-edit__tooltip
+	position: relative;
+	cursor: default;
+
+.user-edit__item.user-edit__tooltip--active .tooltip
+	visibility: visible;
+	opacity: 1;
+
+.tooltip
+	background-color: #FFF;
+	visibility: hidden;
+	position: absolute;
+	box-shadow: 0px 0px 10px 0px rgba(56, 54, 54, 1);
+	z-index: 99;
+	top: 0%;
+	left: 90%;
+	@include media("<=phone")
+		display: none !important;
+	@include media("<phlandscape")
+		display: none !important;
+
+.tooltip::before
+	content: " ";
+	width: 0;
+	height: 0;
+	border-style: solid;
+	border-width: 12px 12.5px 0 12.5px;
+	border-color: #fff transparent transparent transparent;
+	position: absolute;
+	top: 10%;
+	right: 96%;
+	transform: rotate(90deg);
+
+.edit .tooltip
+	display: block !important;
+	position: relative;
+	left: 0;
+	visibility: visible;
+	box-shadow: none;
+	background: transparent;
+	width: 90vw;
+
+.tooltip__title
+	margin: 10px 0 2px 10px;
+	display: block;
+	text-transform: uppercase;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	width: 100%;
+	-webkit-box-ordinal-group: 2;
+	order: 1;
+	pointer-events: none;
+	-webkit-font-smoothing: antialiased;
+	padding-left: 3px;
+	padding-right: 0;
+	z-index: 1;
+	-webkit-transform: translate3d(5px,21px,0) scale(1);
+	transform: translate3d(5px,21px,0) scale(1);
+	-webkit-transition: -webkit-transform .4s cubic-bezier(.25,.8,.25,1);
+	transition: -webkit-transform .4s cubic-bezier(.25,.8,.25,1);
+	transition: transform .4s cubic-bezier(.25,.8,.25,1);
+	transition: transform .4s cubic-bezier(.25,.8,.25,1),-webkit-transform .4s cubic-bezier(.25,.8,.25,1);
+	max-width: 100%;
+	-webkit-transform-origin: left top;
+	transform-origin: left top;
+
+.tooltip__title--filled
+	color: #727f87;
+	-webkit-transform: translate3d(5px,6px,0) scale(0.75) !important;
+	transform: translate3d(5px,6px,0) scale(0.75) !important;
+
+.tooltip__title--focused
+	-webkit-transform: translate3d(5px,6px,0) scale(0.75);
+	transform: translate3d(5px,6px,0) scale(0.75);
+	color: #2a7de4 !important;
+
+.edit .tooltip__title
+	margin-left: 0;
+	padding-left: 0
+
+.tooltip__input
+	border: none;
+	color: #727f87;
+	background: transparent;
+	margin: 2px 17px;
+	font-size: 1em;
+	border-bottom: 1px solid #dbe4ed;
+	margin-bottom: 16px;
+	padding-bottom: 7px;
+	width: 85%;
+	z-index: 99;
+
+.tooltip__input:focus
+	border: none;
+	outline: none;
+	border-bottom: 1px solid #2a7de4;
+
+.edit .tooltip__input
+	margin-left: 0;
+	margin-right: 0;
+	width: 90vw;
+
+.tooltip__btn
+	min-width: max-content;
+	margin: 0 4px 20px 12px;
+	width: 80px;
+
+.tooltip__btn-container
+	display: flex;
+	flex-direction: row;
+	justify-content: space-around;
+	align-items: flex-start;
+	padding: 0 45px 0 5px;
+
+.edit .tooltip__btn-container
+	display: none;
+
+.tooltip__btn--blue
+	border: 1px solid #2a7ee4;
+	border-radius: 2px;
+	color: #FFF;
+	font-weight: 700;
+	font-size: 0.8em;
+	padding: 7px 16px;
+	text-transform: uppercase;
+	background-color: #2a7ee4;
+
+.tooltip__btn--blue-inverted
+	border: 1px solid #2a7ee4;
+	-webkit-border-radius: 2px;
+	-moz-border-radius: 2px;
+	border-radius: 2px;
+	color: #2a7ee4;
+	font-weight: bold;
+	font-size: 0.8em;
+	padding: 7px 16px;
+	text-transform: uppercase;
+

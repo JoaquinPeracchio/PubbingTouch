@@ -1,0 +1,166 @@
+<html>
+<head>
+	<!-- Standard Meta -->
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+
+	<title>Login</title>
+
+	<link rel="stylesheet" type="text/css" href="/semantic/semantic.min.css">
+	<link rel="stylesheet" type="text/css" href="/css/intlTelInput.css">
+	<link rel="stylesheet" type="text/css" href="/css/main.css">
+</head>
+<body data-mode="edit">
+<%- include ('../partials/header') %>
+	<section>
+		<h2>Registro Config</h2>
+
+		<form id="profileForm">
+			<input id="device" value="Web" name="device" type="hidden">
+			<input id="dialCode" name="dialCode" type="hidden">
+			<input id="country" name="country" type="hidden">
+			<div class="ui two column stackable grid">
+				<div class="column">
+					<label for="tarifa_id">Tarifa</label>
+					<div class="ui floating dropdown labeled search icon button selection tarifaInput" style="width: 100%;">
+						<input type="hidden" name="tarifa_id">
+						<i class="tasks icon"></i>
+						<span class="text">Tarifa</span>
+						<div class="menu tarifaname"></div>
+					</div>
+				</div>
+				<div class="column">
+					<div class="ui vertical icon buttons green">
+						<div class="ui button addTarifa disabled">
+							<i class="plus icon"></i>
+						</div>
+					</div>
+				</div>
+			<div class="ui two column stackable grid">
+				<div class="column">
+					<label for="titlename">Empresa</label>
+					<div class="ui input">
+							<input id="titlename" name="titlename" required="" type="text" placeholder="Requerido">
+					</div>
+				</div>
+				<div class="column">
+					<label for="cuit">CUIT</label>
+					<div class="ui input">
+						<input id="cuit" name="cuit" required="" type="text" placeholder="Requerido">
+					</div>
+				</div>
+			</div>
+			<div class="ui two column stackable grid">
+				<div class="column">
+					<label for="direccion">Direcci&oacute;n</label>
+					<div class="ui input">
+						<input id="direccion" name="direccion" required="" type="text" placeholder="Requerido">
+					</div>
+				</div>
+				<div class="column">
+					<label for="telefono">Numero de Telefono: <span id="phoneOutput"></span></label>
+					<div class="ui input">
+						<input id="telefono" name="telefono" required="" type="tel" autocomplete="on">
+					</div>
+				</div>
+			</div>
+			<h4 class="ui horizontal divider header">
+				<i class="tag icon"></i>
+				Poder habilitante de gesti&oacute;n
+			</h4>
+			<div class="ui one column stackable grid">
+				<div class="column">
+					<div class="ui toggle checkbox">
+						<input class="check" type="checkbox" name="estatuto" id="estatuto">
+						<label for="estatuto">Estatuto Social</label>
+					</div>
+				</div>
+			</div>
+			<h4 class="ui horizontal divider header">
+				<i class="tag icon"></i>
+				Añadir Poder habilitante de gesti&oacute;n
+			</h4>
+			<div class="ui one column stackable grid">
+				<div class="column">
+					<input class="estatutoFile" type="file" name="myFile" />
+				</div>
+			</div>
+			<div class="ui one column stackable grid">
+				<div class="column">
+					<div class="ui toggle checkbox">
+						<input class="check" type="checkbox" name="acta_autoridades" id="acta_autoridades">
+						<label for="acta_autoridades">Acta Designaci&oacute;n de Autoridades</label>
+					</div>
+				</div>
+			</div>
+			<div class="ui one column stackable grid">
+				<div class="column">
+					<label for="acta_autoridades_exp">Vencimiento</label>
+					<div class="ui input">
+						<input id="acta_autoridades_exp" name="acta_autoridades_exp" required="" type="text" placeholder="Requerido">
+					</div>
+				</div>
+			</div>
+			<div class="ui one column stackable grid">
+				<div class="column">
+					<div class="ui toggle checkbox">
+						<input class="check" type="checkbox" name="fideicomiso" id="fideicomiso">
+						<label for="fideicomiso">Contrato de Fideicomiso</label>
+					</div>
+				</div>
+			</div>
+			<div class="ui one column stackable grid">
+				<div class="column">
+					<label for="fideicomiso_exp">Vencimiento</label>
+					<div class="ui input">
+						<input id="fideicomiso_exp" name="fideicomiso_exp" required="" type="text" placeholder="Requerido">
+					</div>
+				</div>
+			</div>
+			<div class="ui one column stackable grid">
+				<div class="column">
+					<div class="ui toggle checkbox">
+						<input class="check" type="checkbox" name="gestion" id="gestion">
+						<label for="gestion">Poder de Gestion</label>
+					</div>
+				</div>
+			</div>
+			<div class="ui one column stackable grid">
+				<div class="column">
+					<label for="gestion_exp">Vencimiento</label>
+					<div class="ui input">
+						<input id="gestion_exp" name="gestion_exp" required="" type="text" placeholder="Requerido">
+					</div>
+				</div>
+			</div>
+
+			<div class="field">
+				<label>Asignar Administrador de la Empresa </label>
+				<div id="ui-user-search" class="ui fluid input search">
+				<div class="ui icon input">
+					<input class="prompt" type="text" placeholder="Asignar Administrador">
+					<i class="search icon"></i>
+				</div>
+				<div class="results"></div>
+				</div>
+				<div class="adminUsers"></div>
+				</div>
+				<div class="uploadedFiles"></div>
+				</div>
+			</div>
+			<div class="ui divider"></div>
+			<div class="ui error message hidden">
+				<div class="header"></div>
+			</div>
+			<div class="ui one column stackable grid">
+				<div class="column">
+					<button id="submit" class="ui button">Enviar</button>
+				</div>
+			</div>
+		</form>
+	</section>
+	<%- include ('../partials/chat') %>
+	<%- include ('../partials/scripts') %>
+</body>
+</html>

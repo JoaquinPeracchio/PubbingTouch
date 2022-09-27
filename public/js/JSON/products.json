@@ -1,0 +1,79 @@
+{
+	"products":[{
+		"_id": "5ef4702ab879ddc4fa184681",
+		"brand": "Guaymallen",
+		"measure": "unit",
+		"category": "Alfajores",
+		"sort": "alfajor guaymallen blanco negro triple",
+		"description": "",
+		"comestible":"100",
+		"fuente":"",
+		"variant": [{
+			"sku": "5ef475f7b879ddc4fa184899",
+			"barcode": "77980266",
+			"item_content": "70g",
+			"titlename": "Alfajor Simple Blanco",
+			"image": "/images/golosinas/alfajores/guaymallen-blanco.jpg",
+			"sort": "alfajor guaymallen blanco",
+			"description": ""
+		},{
+			"sku": "5ef47607b879ddc4fa1848a1",
+			"barcode": "77980267",
+			"item_content": "70g",
+			"titlename": "Alfajor Triple Blanco",
+			"image": "/images/golosinas/alfajores/guaymallen-blanco-triple.jpg",
+			"sort": "alfajor guaymallen triple blanco",
+			"description": ""
+		},{
+			"sku": "5ef47613b879ddc4fa1848a8",
+			"barcode": "77980273",
+			"item_content": "70g",
+			"titlename": "Alfajor Simple Negro",
+			"image": "/images/golosinas/alfajores/guaymallen-negro.jpg",
+			"sort": "alfajor guaymallen negro",
+			"description": ""
+		},{
+			"sku": "5ef4761db879ddc4fa1848af",
+			"barcode": "77980274",
+			"item_content": "70g",
+			"titlename": "Alfajor Triple Negro",
+			"image": "/images/golosinas/alfajores/guaymallen-negro-triple.jpg",
+			"sort": "alfajor guaymallen triple negro",
+			"description": ""
+		}],
+		"nutricional":[{
+			"calorias":"",
+			"proteinas":"",
+			"lipidos":"",
+			"agsaturados":"",
+			"agmonoinsaturados":"",
+			"agpoliinsaturados":"",
+			"omega3":"",
+			"omega6":"",
+			"colesterol":"",
+			"carbohidratos":"",
+			"fibra":"",
+			"agua":"",
+			"calcio":"",
+			"hierro":"",
+			"yodo":"",
+			"magnesio":"",
+			"zinc":"",
+			"sodio":"",
+			"potasio":"",
+			"fosforo":"",
+			"selenio":"",
+			"tiamina":"",
+			"riboflavina":"",
+			"niacina":"",
+			"vitamina_b6":"",
+			"folatos":"",
+			"vitamina_b12":"",
+			"vitamina_c":"",
+			"vitamina_a":"",
+			"vitamina_d":"",
+			"vitamina_e":""
+		}]
+	}]
+}
+

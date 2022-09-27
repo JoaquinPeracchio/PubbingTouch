@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>Halecka - Usuarios</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<!-- Meta, title, CSS, favicons, etc. -->
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="description" content="Halecka">
+
+	<%- include ('../partials/styles') %>
+	</head>
+
+<body data-mode="register" data-page="users" data-title="Usuarios" data-description=" - Registro" class="sidebar-mini fixed sidebar-mini-expand-feature skin-black sidebar-collapse">
+	<div class="wrapper">
+	<%- include ('../partials/topbar') %>
+	<%- include ('../partials/sidebar') %>
+		<!-- Content Wrapper. Contains page content -->
+		<div class="content-wrapper">
+			<!-- Main content -->
+			<section class="content">
+				<!-- Info boxes -->
+				<div class="row">
+					<div class="col-md-12">
+						<div class="box box-success">
+							<div class="box-body">
+								<form id="userForm" action="#">
+	<h3 data-icon="fa fa-users">Usuario</h3>
+	<fieldset>							 
+		<input id="device" value="Web" name="device" type="hidden">
+		<input id="dialCode" name="dialCode" type="hidden">
+		<input id="country" name="country" type="hidden">
+
+		<div class="row">
+			<div class="col-xs-12">
+				<label class="form-control-label" for="avatar">Imagen de perfil</label>
+				<div class="input-group">
+					<input class="avatar" type="file" id="avatar" data-name="avatar" name="avatar" class="form-control">
+				</div>
+			</div>
+			<div class="col-xs-12">
+				<label class="form-control-label" for="username">Nombre de Usuario</label>
+				<div class="input-group">
+					<input type="text" name="username" id="username" class="form-control pull-right required">
+				</div>
+			</div>
+			<div class="col-xs-6">
+				<label class="form-control-label" for="firstname">Nombre</label>
+				<div class="input-group firstname">
+					<input type="text" name="firstname" id="firstname" class="form-control pull-right required">
+				</div>
+			</div>
+			<div class="col-xs-6">
+				<label class="form-control-label" for="lastname">Apellido</label>
+				<div class="input-group lastname">
+					<input type="text" name="lastname" id="lastname" class="form-control pull-right required">
+				</div>
+			</div>
+			<div class="col-xs-6">
+				<label class="form-control-label" for="email">Correo Electrónico</label>
+				<div class="input-group email">
+					<input type="email" name="email" id="email" class="form-control pull-right required">
+				</div>
+			</div>
+			<div class="col-xs-6">
+				<label class="form-control-label" for="phone">Numero de Telefono:</label>
+				<div class="input-group phone">
+					<input type="tel" name="phone" id="phone" class="form-control pull-right required">
+				</div>
+			</div>
+			<div class="col-xs-6">
+				<label class="form-control-label" for="username">Tipo de Usuario</label>
+				<div class="input-group">
+					<select id="UserName" name="Tipo de Usuario" class="form-control">
+						<option id="owner" value="owner">Owner</option>
+						<option id="admin" value="admin">Admin</option>
+						<option id="user" value="user">User</option>
+					</select>
+				</div>
+			</div>
+			<div class="col-xs-6">
+				<label class="form-control-label" for="password">Contraseña</label>
+				<div class="input-group password">
+					<input type="password" id="password" name="password" class="form-control pull-right required">
+				</div>
+			</div>
+			<div class="col-xs-6">
+				<label class="form-control-label" for="password-match">Confirmar Contraseña</label>
+				<div class="input-group password-match">
+					<input type="password" id="password-match" name="password-match" class="form-control pull-right required">
+				</div>
+			</div>
+			<div class="tab-pane col-xs-12" style="padding-top: 15px;">
+				<div class="row cards newFiles">
+				</div>
+				<div class="row cards uploadedFiles">
+				</div>
+			</div>
+		</div>
+	</fieldset>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- /.row -->
+			</section>
+			<!-- /.content -->
+		</div>
+		<%- include ('../partials/footer') %>
+		<%- include ('../partials/chat') %>
+		<div class="chat-sidebar-bg"></div>
+		<div class="control-sidebar-bg"></div>
+
+	</div>
+	<!-- ./wrapper -->
+	<%- include ('../partials/modal') %>
+	<%- include ('../partials/compose') %>
+	<%- include ('../partials/scripts1') %>
+	<!-- <script type="text/javascript" src="/js/ejs.js"></script> -->
+	<script type="text/javascript">
+
+	var form = $("#userForm").show();
+	var companies = window.localStorage.getItem('companies')
+
+	form.steps({
+		headerTag: "h3",
+		// iconTag: "icon",
+		bodyTag: "fieldset",
+		transitionEffect: "slideLeft",
+		onInit: function (event, currentIndex, newIndex) {
+			if (companies) {
+				companies = JSON.parse(companies);
+				$.each(companies, function (iComp, itemComp) {
+					$('#transportCompany').append($('<option />', { 'class': 'id_' + itemComp._id, 'value': itemComp._id, text: itemComp.titlename }))
+					main.getNotification(itemComp);
+				});
+			} else {
+				$.each(company.collection, function (iComp, itemComp) {
+					$('#transportCompany').append($('<option />', { 'class': 'id_' + itemComp._id, 'value': itemComp._id, text: itemComp.titlename }))
+					main.getNotification(itemComp);
+				});
+			}
+			main.fileOptions();
+			main.overlay.fadeOut();
+		},
+		onStepChanging: function (event, currentIndex, newIndex) {
+			// Allways allow previous action even if the current form is not valid!
+			if (currentIndex > newIndex) {
+				return true;
+			}
+			// Forbid next action on "Warning" step if the user is to young
+			if (newIndex === 3 && Number($("#age-2").val()) < 18) {
+				return false;
+			}
+			// Needed in some cases if the user went back (clean up)
+			if (currentIndex < newIndex) {
+				// To remove error styles
+				form.find(".body:eq(" + newIndex + ") label.error").remove();
+				form.find(".body:eq(" + newIndex + ") .error").removeClass("error");
+			}
+			form.validate().settings.ignore = ":disabled,:hidden";
+			return form.valid();
+		},
+		onStepChanged: function (event, currentIndex, priorIndex) {
+			// Used to skip the "Warning" step if the user is old enough.
+			if (currentIndex === 2 && Number($("#age-2").val()) >= 18) {
+				form.steps("next");
+			}
+			// Used to skip the "Warning" step if the user is old enough and wants to the previous step.
+			if (currentIndex === 2 && priorIndex === 3) {
+				form.steps("previous");
+			}
+		},
+		onFinishing: function (event, currentIndex) {
+			form.validate().settings.ignore = ":disabled";
+			return form.valid();
+		},
+		onFinished: function (e, currentIndex) {
+			console.log("Submitted!");
+			e.preventDefault();
+
+			main.uploadFile($('#avatar'), 'avatar');
+
+			var serializedArr = $('form').serializeArray();
+			var collection = 'users';
+			var mode = 'register';
+
+			main.submit(collection, mode, serializedArr, function (data) {
+				console.log(data)
+				// socketio.sendNodeNotification(
+				// 	'parent_company',
+				// 	form.find('#status').val(),
+				// 	form.find('#comment').val(),
+				// 	'/images/userImage.png',
+				// 	'category'
+				// );
+				main.overlay.fadeOut();
+				window.location.href = '/company';
+			});
+
+		}
+	}).validate({
+		errorElement: 'span',
+		// errorClass: 'has-error',
+		// errorPlacement: function errorPlacement(error, element) { element.after(error); },
+		errorPlacement: function errorPlacement(error, element) {
+			element.parent().parent().addClass('has-error');
+			element.parent().parent().find('label').append(error);
+		},
+		// messages: {
+		// 	'join[email]': "Please enter a valid email address.",
+		// 	'firstName': "Please enter a valid first name.",
+		// 	'lastName': "Please enter a valid last name."
+		// }
+		rules: {
+			password: {
+			    equalTo: "#password-match"
+			}
+			// percent: {
+			// 	required: true,
+			// 	range: [0, 100]
+			// },
+		}
+	});
+	</script>
+
+	</body>
+</html>

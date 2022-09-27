@@ -1,0 +1,61 @@
+{
+	"adlu": {
+		"provider_id": "5b848744efdcb6df391a3f98",
+		"url": "localhost",
+		"port": "3000",
+		"web": "localhost",
+		"cors": [
+			"localhost:9000",
+			"localhost:4200",
+			"adlu.com",
+			"*.adlu.com",
+			"api.dev.adlu.com:4000",
+			"*"
+		]
+	},
+	"mongodb": {
+		"url": "localhost:27017",
+		"volumes": {
+			"mongodata":"/data/db"
+		},
+		"dbname": "adlu",
+		"user": "admin",
+		"pass": "123123",
+		"uri": "mongodb://admin:123123@localhost:27017/adlu",
+		"options": {
+			"useNewUrlParser": "true",
+			"useUnifiedTopology": "true"
+		}
+	},
+	"server-test": {
+		"url": "",
+		"user": "",
+		"pass": ""
+	},
+	"facebook": {
+		"clientId": "",
+		"clientSecret": "",
+		"callbackUrl": ""
+	},
+	"fb": {
+		"clientId": "",
+		"clientSecret": "",
+		"callbackUrl": ""
+	},
+	"twitter": {
+		"redirect": "",
+		"owner": "",
+		"ownerID": "",
+		"consumerKey": "",
+		"consumerSecret": ""
+	},
+	"jwt": {
+		"secret": "j=khm,=K$4uv^F,{llz#F8:N;FD2aX_23{pWpeC4h7ZAa/S}",
+		"expirationTime": "86400",
+		"_comment": "expirationTime is in seconds"
+	},
+	"crypto": {
+		"secret": "aA)v/5LApZ6HK4)4w",
+		"_comment": "for encrpt/decrypt with AES fbTokens"
+	}
+}

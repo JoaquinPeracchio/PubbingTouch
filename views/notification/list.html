@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>Halecka - Notificaciones</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<!-- Meta, title, CSS, favicons, etc. -->
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="description" content="Halecka">
+
+	<%- include ('../partials/styles') %>
+	</head>
+
+<body data-mode="list" data-page="notification" data-title="Notificaciones" data-description=" - Listado" class="sidebar-mini fixed sidebar-mini-expand-feature skin-black sidebar-collapse">
+	<div class="wrapper">
+	<%- include ('../partials/topbar') %>
+	<%- include ('../partials/sidebar') %>
+		<!-- Content Wrapper. Contains page content -->
+		<div class="content-wrapper">
+			<!-- Main content -->
+			<section class="content">
+				<!-- Info boxes -->
+				<div class="row">
+					<div class="col-md-12">
+						<div id="accordion" class="box-group accordion notificationContent">
+						</div>
+					</div>
+				</div>
+				<!-- /.row -->
+			</section>
+			<!-- /.content -->
+		<%- include ('../partials/chat') %>
+		</div>
+
+	<%- include ('../partials/footer') %>
+	<%- include ('../partials/modal') %>
+	<div class="control-sidebar-bg"></div>
+	</div>
+	<!-- ./wrapper -->
+	<%- include ('../partials/compose') %>
+	<%- include ('../partials/scripts1') %>
+	<script type="text/javascript">
+
+		var selector = $('.notificationContent');
+		company.getRelated(function(data){
+			$.each(data.collection, function (i, item) {
+				console.log(item);
+				notification.generate(
+					selector,
+					notification.getRelated( // (companyID, element, filterBy, state)
+						item._id,
+						selector,
+						'',
+						''
+					)
+				);
+			});
+		})
+		main.overlay.hide();
+	</script>
+
+	</body>
+</html>

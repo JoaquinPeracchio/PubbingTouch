@@ -1,0 +1,120 @@
+<!-- views/partials/topbar.ejs -->
+
+<header class="main-header">
+
+    <!-- Logo -->
+    <a href="/" class="logo">
+      <!-- mini logo for sidebar mini 50x50 pixels -->
+      <span class="logo-mini"><b>H</b></span>
+      <!-- logo for regular state and mobile devices -->
+      <span class="logo-lg"><b>H</b>alecka</span>
+    </a>
+
+    <!-- Header Navbar: style can be found in header.less -->
+    <nav class="navbar navbar-static-top">
+      <!-- Sidebar toggle button-->
+      <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
+        <span class="sr-only">Toggle navigation</span>
+      </a>
+			<h1> <span class="titleData">Dashboard</span><small class="descriptionData"> - Version 2.0</small></h1>
+      <!-- Navbar Right Menu -->
+      <div class="navbar-custom-menu">
+        <ul class="nav navbar-nav">
+          <li class="dropdown search-menu">
+            <a href="#" style="float: left;" role="button" data-toggle="collapse" data-target="#search" aria-expanded="false" aria-controls="search-colapse">
+              <i class="fa fa-search"></i>
+            </a>
+            <div id="search" class="align-center collapse width userFilter">
+              <input class="stringFilter form-control" type="search" placeholder="Buscar">
+              <select class="form-control sortBy">
+                <option value="firstname">Nombre</option>
+                <option value="lastname">Apellido</option>
+                <option value="transportCompany">Empresa</option>
+                <option value="email">E-Mail</option>
+              </select>
+              <select class="form-control sortOrder">
+                <option value="1">Ascendente</option>
+                <option value="-1">Descentente</option>
+              </select>
+            </div>
+          </li>
+<!--           <li class="dropdown search-menu">
+            <a href="#" data-toggle="collapse" data-target="#search" aria-expanded="false" aria-controls="search-colapse">
+              <i class="fa fa-search"></i>
+            </a>
+            <div class="collapse" id="search">
+              <input class="stringFilter form-control" type="search" placeholder="Buscar">
+              <select class="ui dropdown sortBy">
+                <option value="firstname">Nombre</option>
+                <option value="lastname">Apellido</option>
+                <option value="transportCompany">Empresa</option>
+                <option value="email">E-Mail</option>
+              </select>
+              <select class="ui dropdown sortOrder">
+                <option value="1">Ascendente</option>
+                <option value="-1">Descentente</option>
+              </select>
+            </div>
+          </li> -->
+          <!-- Tasks: style can be found in dropdown.less -->
+          <li class="dropdown tasks-menu">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+              <i class="fa fa-flag-o"></i>
+              <span class="label label-danger tasks-length">0</span>
+            </a>
+            <ul class="dropdown-menu">
+              <li>
+                <!-- inner menu: contains the actual data -->
+                <ul class="menu">
+                </ul>
+              </li>
+<!--
+              <li class="footer">
+                <a href="#">View all tasks</a>
+              </li>
+-->
+            </ul>
+          </li>
+          <!-- Notifications: style can be found in dropdown.less -->
+          <li class="dropdown notifications-menu">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+              <i class="fa fa-bell-o"></i>
+              <span class="label label-warning notifications-length">0</span>
+            </a>
+            <ul class="dropdown-menu">
+                <!-- inner menu: contains the actual data -->
+              <li>
+                <ul class="menu">
+                </ul>
+              </li>
+              <li class="footer">
+                <a href="/notification/register">Nueva</a>
+              </li>
+              <li class="footer">
+                <a href="/notification">Ver Todas</a>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <a href="#" class="shop_sidebar_btn" data-toggle="shop-sidebar">
+              <i class="fa fa-shopping-cart"></i>
+              <span class="label label-warning">3</span>
+            </a>
+          </li>
+<!--
+          <li>
+            <a href="#" data-toggle="chat-sidebar">
+              <i class="fa fa-comment-o"></i>
+              <span class="label label-warning">3</span>
+            </a>
+          </li>
+-->
+          <!-- Control Sidebar Toggle Button -->
+          <li>
+            <a href="#" data-toggle="control-sidebar"><i class="fa fa-gears"></i></a>
+          </li>
+        </ul>
+      </div>
+
+    </nav>
+  </header>
